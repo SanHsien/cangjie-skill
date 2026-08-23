@@ -4,7 +4,7 @@
 
 **決定**：fork `kangarooking/cangjie-skill`，保留 GNU AGPL v3.0 與完整歷史，預設分支維持 `main` 以降低與上游同步摩擦。本線聚焦繁中公開入口、Windows 開發 gate、Windows CI，以及逐筆審查的上游追蹤。
 
-**理由**：上游 RIA-TV++ 方法論、提取器與模板已經可在 Claude Code / Cursor / OpenClaw 使用，符合主人把長影音與書籍提煉成可呼叫技能的需求。缺的是 Windows 11 上可重現的開發／驗收骨架，以及繁中入口。直接用上游 repo 難以長期記錄 fork 取捨。授權是 AGPL，fork 修改同樣走 AGPL，不改成更寬的授權。
+**理由**：上游 RIA-TV++ 方法論、提取器與模板已經可在 Claude Code / Cursor / OpenClaw 使用，符合維護者把長影音與書籍提煉成可呼叫技能的需求。缺的是 Windows 11 上可重現的開發／驗收骨架，以及繁中入口。直接用上游 repo 難以長期記錄 fork 取捨。授權是 AGPL，fork 修改同樣走 AGPL，不改成更寬的授權。
 
 **限制**：
 
@@ -12,7 +12,7 @@
 - `SKILL.md` 保持產品規格，不用維護索引覆寫。
 - 不把產品方法論翻譯成繁體；產品語言跟隨上游。
 - 上游更新必須逐筆審查。
-- 不回貢，除非主人在當次對話明確同意。
+- 不回貢，除非維護者在當次對話明確同意。
 
 ## 2026-08-22：維護線直接推 main
 
@@ -44,7 +44,7 @@
 **決定**：採用 #24、#5、#15 正文強化（不含 `trigger_words` frontmatter）。詳見落地 commit `75463cf`。
 
 **理由**：
-- 主人常用 Codex；#24 是相容性修正。frontmatter 只留 `name`+`description`。
+- 維護者常用 Codex；#24 是相容性修正。frontmatter 只留 `name`+`description`。
 - #5 是防禦性邊界，改動小。
 - #15 提高 darwin 基線；額外 YAML 欄位會破壞 #24 契約。
 
