@@ -1,0 +1,9 @@
+{
+  "repo": "https://github.com/kangarooking/cangjie-skill.git",
+  "branch": "main",
+  "reviewed_through": "3a8c23a67884167411af230a5ff20975548756a5",
+  "reviewed_date": "2026-08-23",
+  "notes": "Commit baseline remains 3a8c23a (no new upstream commits). Landed #24+#5+#15-body as 75463cf, then selective #22+#10+#4 concepts and issue #20 install discipline as c4ea339. PR #25 remains deferred; site/release branches remain rejected. Exact reviewed heads and per-item reasons are in docs/UPSTREAM.md. 2026-08-23 第二輪：PR #26（registry/vidknot 條目）實查後不引用——registry/ 目錄在上游 main 與本 fork 都不存在，且不動方法論；兩條分支 head 未變、結論不變；依賴新鮮度補上 deferral 出口與 9 條契約測試。",
+  "reviewed_pr_through": 26,
+  "reviewed_issue_through": 20
+}

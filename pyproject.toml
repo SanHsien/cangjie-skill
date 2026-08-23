@@ -1,0 +1,20 @@
+# Tool configuration only. This repository ships a Markdown Agent Skill, not a Python
+# package, so there is deliberately no [project] or [build-system] table -- the file
+# exists so a bare `ruff check` or `pytest` locally behaves the way CI does.
+#
+# Keep these values in sync with .github/workflows/ci.yml. CI still passes the flags
+# explicitly, so a drift here shows up as a local/CI disagreement, not a green CI on
+# unchecked code.
+
+[tool.ruff]
+# CI tests Python 3.9 through 3.14; the floor is what ruff must target.
+target-version = "py39"
+src = ["scripts", "tests", "tools"]
+
+[tool.ruff.lint]
+# Syntax errors and pyflakes only. Upstream product files are not reformatted to
+# satisfy a linter -- see AGENTS.md, "不為了套格式而大改上游檔案".
+select = ["E9", "F"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
