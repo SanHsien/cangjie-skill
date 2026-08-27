@@ -21,7 +21,7 @@
 
 </div>
 
-> **這是 [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill) 的 Windows-first 維護型 fork**，沿用 GNU AGPL v3.0 與完整 Git 歷史。產品 Skill、方法論與模板跟隨上游；本維護線補上繁中入口、Windows 開發／驗收 gate，以及逐筆審查的上游追蹤。差異見 [`FORK.md`](FORK.md)，同步策略見 [`docs/UPSTREAM.md`](docs/UPSTREAM.md)。
+> **這是 [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill) 的 Windows-first 維護型 fork**，沿用 GNU AGPL v3.0 與完整 Git 歷史。產品 Skill、方法論與模板跟隨上游；本維護線補上繁中入口、Windows 開發／驗收 gate，以及逐筆審查的上游追蹤。差異見 [`FORK.md`](FORK.md)，同步策略見 [`docs/UPSTREAM.md`](docs/UPSTREAM.md)，風險快照見 [`REVIEW.md`](REVIEW.md)。
 
 ## DeepSeek Harness 外掛
 

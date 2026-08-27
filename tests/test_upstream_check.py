@@ -76,6 +76,9 @@ def test_baseline_matches_decisions_record() -> None:
     )
 
     assert baseline["reviewed_date"] in decisions
-    assert "3a8c23a" in (
+    upstream = (
         Path(__file__).parents[1] / "docs" / "UPSTREAM.md"
     ).read_text(encoding="utf-8")
+    assert "3a8c23a" in upstream
+    assert baseline["reviewed_through"] in upstream
+    assert baseline["reviewed_through"] in decisions

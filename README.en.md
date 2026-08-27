@@ -10,7 +10,7 @@
 
 Distill a book, long video, or podcast into a set of executable AI skills.
 
-> **This is a Windows-first maintenance fork of [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill).** It keeps the GNU AGPL v3.0 license and full git history. Product behaviour follows upstream; this line adds Traditional Chinese docs, a Windows development gate, and commit-by-commit upstream review. See [`FORK.md`](FORK.md) and [`docs/UPSTREAM.md`](docs/UPSTREAM.md).
+> **This is a Windows-first maintenance fork of [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill).** It keeps the GNU AGPL v3.0 license and full git history. Product behaviour follows upstream; this line adds Traditional Chinese docs, a Windows development gate, and commit-by-commit upstream review. See [`FORK.md`](FORK.md), [`docs/UPSTREAM.md`](docs/UPSTREAM.md), and [`REVIEW.md`](REVIEW.md).
 
 ## Install the skill
 

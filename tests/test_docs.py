@@ -72,6 +72,13 @@ def test_gitignore_covers_distillation_output() -> None:
     assert "books/" in text
     assert "*.pdf" in text
     assert "*.srt" in text
+    assert "*.mobi" in text
+    assert "*.azw" in text
+    assert "*.azw3" in text
+    assert "*.docx" in text
+    assert "cookies.txt" in text
+    assert "cookies.json" in text
+    assert "credentials.json" in text
 
 
 def test_skill_path_checker_flags_missing_reference(tmp_path: Path) -> None:
@@ -94,6 +101,11 @@ def test_star_history_workflow_is_gated_to_upstream() -> None:
     ).read_text(encoding="utf-8")
     assert "kangarooking/cangjie-skill" in workflow
     assert "github.repository" in workflow
+    # Same checkout pin as ci.yml. This job git-pushes, so do not add
+    # persist-credentials: false.
+    assert "actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1" in workflow
+    assert "git push" in workflow
+    assert "persist-credentials: false" not in workflow
 
 
 def test_public_docs_are_traditional_chinese_and_english_only() -> None:
@@ -220,6 +232,45 @@ def test_tool_config_matches_ci_flags() -> None:
     # Match table headers at line start -- the file mentions both names in a comment.
     assert not re.search(r"^\[project\]", pyproject, re.M)
     assert not re.search(r"^\[build-system\]", pyproject, re.M)
+
+
+def test_review_snapshot_has_required_sections() -> None:
+    text = (ROOT / "REVIEW.md").read_text(encoding="utf-8")
+    assert "## 結論" in text
+    assert "## 已修 findings" in text
+    assert "## 接受、不改契約" in text
+    assert "## 尚未宣稱範圍" in text
+    assert "不回貢" in text
+    assert "AGPL" in text
+
+
+def test_fork_license_remains_agpl() -> None:
+    license_text = (ROOT / "LICENSE").read_text(encoding="utf-8")
+    notice = (ROOT / "NOTICE.md").read_text(encoding="utf-8")
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    assert "GNU AFFERO GENERAL PUBLIC LICENSE" in license_text
+    assert "Version 3" in license_text
+    assert "AGPL" in notice
+    assert "AGPL" in readme
+    assert "MIT License" not in license_text
+
+
+def test_docs_do_not_cite_squashed_internal_shas() -> None:
+    """壓縮歷史後那兩個落地 SHA 已不在祖先鏈；文件再引用會讓接手的人 git show 落空。"""
+    needles = ("75463cf", "c4ea339")
+    paths = [
+        ROOT / "docs" / "UPSTREAM.md",
+        ROOT / "docs" / "DECISIONS.md",
+        ROOT / "FORK.md",
+        ROOT / "REVIEW.md",
+        ROOT / "tools" / "upstream_baseline.json",
+        ROOT / "CHANGELOG.md",
+        ROOT / "CHANGELOG.en.md",
+    ]
+    for path in paths:
+        text = path.read_text(encoding="utf-8")
+        for needle in needles:
+            assert needle not in text, f"{path.name} still cites {needle}"
 
 
 def test_line_endings_are_pinned_to_lf() -> None:

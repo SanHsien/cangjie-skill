@@ -11,6 +11,23 @@ adopt/skip reasoning is recorded in [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
 ---
 
+## 2026-08-27 (full-repo review; four upstream commits skipped; AGPL kept)
+
+### Added
+
+- **`REVIEW.md`.** A risk snapshot: conclusion, evidence from this pass, closed findings, accepted contract, and what this review does not claim. It is not a log of every ordinary bug.
+
+### Changed
+
+- **gitignore now covers extra ebook formats and credential filenames.** `*.mobi` / `*.azw` / `*.azw3` / `*.docx`, plus `cookies.txt` / `cookies.json` / `credentials.json`. The contract is in `tests/test_docs.py`.
+- **Dropped internal SHAs that vanished after the history squash.** `docs/DECISIONS.md`, `docs/UPSTREAM.md`, and `tools/upstream_baseline.json` now say "current tree", so the next person does not `git show` a missing object.
+- **`update-star-history.yml` checkout is SHA-pinned**, matching `ci.yml` (v7.0.1). That job `git push`es, so `persist-credentials: false` is not added.
+- **`FORK.md` lists the product subsets already in tree** (#22 / #4 / #10).
+
+### Upstream
+
+- **All four new commits skipped.** WeCom QR, Japanese README switch, AGPL→MIT plus English-default README, and the English README's site / QR / author block. This fork keeps AGPL-3.0. `reviewed_through` moves to `5f03a4cd8b521673f7a67ca6279330ec943bb369`. Reasons live in [`docs/UPSTREAM.md`](docs/UPSTREAM.md) and [`docs/DECISIONS.md`](docs/DECISIONS.md). No upstream PR this round.
+
 ## 2026-08-23 (dependency exits and the second upstream pass)
 
 ### Added

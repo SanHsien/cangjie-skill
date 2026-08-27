@@ -10,6 +10,23 @@
 
 ---
 
+## 2026-08-27（全庫審查；略過上游四筆；維持 AGPL）
+
+### 新增
+
+- **`REVIEW.md`。** 全庫風險快照：結論、本輪實證、已修 findings、接受不改契約、尚未宣稱範圍。不是每個一般 bug 的流水帳。
+
+### 變更
+
+- **gitignore 補電子書與憑證。** `*.mobi`／`*.azw`／`*.azw3`／`*.docx`、`cookies.txt`／`cookies.json`／`credentials.json`。契約寫進 `tests/test_docs.py`。
+- **清掉壓縮歷史後失效的內部 SHA。** `docs/DECISIONS.md`、`docs/UPSTREAM.md`、`tools/upstream_baseline.json` 改寫成「目前 tree」，避免接手的人 `git show` 落空。
+- **`update-star-history.yml` checkout SHA pin**，與 `ci.yml` 相同（v7.0.1）。該 job 會 `git push`，不加 `persist-credentials: false`。
+- **`FORK.md` 補上已落地的產品修正清單**（#22／#4／#10 子集）。
+
+### 上游
+
+- **四筆新 commit 全部略過。** 企微 QR、日文 README 切換、AGPL→MIT＋英文預設 README、英文 README 的官網／QR／作者段。本線授權維持 AGPL-3.0。`reviewed_through` 推進到 `5f03a4cd8b521673f7a67ca6279330ec943bb369`。理由寫在 [`docs/UPSTREAM.md`](docs/UPSTREAM.md) 與 [`docs/DECISIONS.md`](docs/DECISIONS.md)。本輪不回貢。
+
 ## 2026-08-23（依賴出口與上游第二輪）
 
 ### 新增

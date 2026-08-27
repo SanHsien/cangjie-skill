@@ -37,15 +37,15 @@ README 衝突的解法：上游新簡體產品說明翻進 `README.md`，並同�
 （`docs: add DeepSeek Harness plugin install (#23)`）建立。此 SHA 設為第一個 `reviewed_through`。
 之後的上游 commit 才需要進入審查清冊。
 
-## 2026-08-22：第一輪採用（已落地 `75463cf`）
+## 2026-08-22：第一輪採用（產品內容在目前 tree）
 
 | 項目 | 結論 | 落地狀態 |
 | --- | --- | --- |
-| [PR #24](https://github.com/kangarooking/cangjie-skill/pull/24) Codex 跨宿主 | **採用**。`agents/openai.yaml`、分批並行、frontmatter 只留 `name`+`description`、安裝含 `~/.agents/skills/`。略過 `README.ja.md`。 | 已進 `origin/main` |
-| [PR #5](https://github.com/kangarooking/cangjie-skill/pull/5) 來源安全護欄 | **採用**。來源文本當不可信資料。 | 已進 `origin/main` |
-| [PR #15](https://github.com/kangarooking/cangjie-skill/pull/15) darwin 9 維 | **部分採用**。CHECKPOINT／反模式／決策樹／跨 skill 測試 ≥2 寫進正文與模板。**不**把 `trigger_words` 寫進 frontmatter。 | 已進 `origin/main` |
+| [PR #24](https://github.com/kangarooking/cangjie-skill/pull/24) Codex 跨宿主 | **採用**。`agents/openai.yaml`、分批並行、frontmatter 只留 `name`+`description`、安裝含 `~/.agents/skills/`。略過 `README.ja.md`。 | 已進目前 `origin/main` |
+| [PR #5](https://github.com/kangarooking/cangjie-skill/pull/5) 來源安全護欄 | **採用**。來源文本當不可信資料。 | 已進目前 `origin/main` |
+| [PR #15](https://github.com/kangarooking/cangjie-skill/pull/15) darwin 9 維 | **部分採用**。CHECKPOINT／反模式／決策樹／跨 skill 測試 ≥2 寫進正文與模板。**不**把 `trigger_words` 寫進 frontmatter。 | 已進目前 `origin/main` |
 
-## 2026-08-23：嚴格重評與選擇性落地（產品 commit `c4ea339`）
+## 2026-08-23：嚴格重評與選擇性落地（產品內容在目前 tree）
 
 上游仍無新 commit（`reviewed_through` = `3a8c23a`）。本輪重讀 #22 / #25 / #10 / #4 的完整 diff、分支 vs `main`、open issue 正文。
 **禁止**用「等上游定案／新階段／非本線需求」當唯一理由。以下保留可重現的評估、最終落地範圍與拒絕理由。
@@ -71,7 +71,7 @@ README 衝突的解法：上游新簡體產品說明翻進 `README.md`，並同�
   1. 採「三坑」全文；可蒸性三問；≤1 問通過則降級摘要；成本表。
   2. 「複用檢查」改寫：搜本機 skills + 上游示例表連結；**不要**寫死 ClawHub / `skills_list`。
   3. 「必做」改成預設執行、使用者明示可跳過。
-- **結論**：**部分採用，已進 `c4ea339`**。實作另吸收 #4 的五維評分與四類產物判斷，但不帶 evaluation 樣本；預篩預設執行，使用者可明示跳過並留下 `prefilter_skipped`。
+- **結論**：**部分採用，已進目前 `origin/main`**。實作另吸收 #4 的五維評分與四類產物判斷，但不帶 evaluation 樣本；預篩預設執行，使用者可明示跳過並留下 `prefilter_skipped`。
 
 ### PR #25 — X 來源 adapter
 
@@ -86,7 +86,7 @@ README 衝突的解法：上游新簡體產品說明翻進 `README.md`，並同�
 - **價值**：`alternate_artifact`（小說別硬拆）概念正確，但與 #22 重複且更重（25 分 + 多一份產物）。
 - **具體問題**：evaluation 含本機絕對路徑（`/Users/yuewang/...`）；三體樣本 PR 自承無原文 genre dry-run。
 - **建議**：不整支採用；把「小說／alternate」判斷併入 #22 風格預篩即可。
-- **結論**：**不整支採用**。只把五維適配評分、四類產物判斷與 `BOOK_FIT.md` 模板併入 `c4ea339`；未採 evaluation、舊 `book2skill` 文字與日文 README。
+- **結論**：**不整支採用**。只把五維適配評分、四類產物判斷與 `BOOK_FIT.md` 模板併入目前 tree；未採 evaluation、舊 `book2skill` 文字與日文 README。
 
 ### PR #10 — 驗證流水線強化
 
@@ -96,7 +96,7 @@ README 衝突的解法：上游新簡體產品說明翻進 `README.md`，並同�
   1. 採：短內容 V1 自適應、`execution_check`、對抗出題、可選 SCORECARD、術語回填寫**正文**。
   2. 雙評審標成有餘力才做；否則 `review_mode: fallback_single_agent`（PR 自己也寫了 fallback）。
   3. **剔除**：三份 session 檔、`related_skills` frontmatter、整支無差別合入。
-- **結論**：**部分採用，已進 `c4ea339`**。雙評審改為高風險／高信心模式，一般任務用一次結構化評審並記 `fallback_single_agent`；`SCORECARD.md` 只在完整包、比較、審計或使用者要求時生成。
+- **結論**：**部分採用，已進目前 `origin/main`**。雙評審改為高風險／高信心模式，一般任務用一次結構化評審並記 `fallback_single_agent`；`SCORECARD.md` 只在完整包、比較、審計或使用者要求時生成。
 
 ### Open issues
 
@@ -109,7 +109,7 @@ README 衝突的解法：上游新簡體產品說明翻進 `README.md`，並同�
 | #13 Codex | 是（已做） | 由 #24 覆蓋 |
 | #14 步驟／影片 | 部分已有、無新增 | README 已有安裝路徑、直接呼叫 prompt、兩個效果示例與公開產物範例；影片是外部媒體產物，本輪不為湊項目新增或託管 |
 | #16 VPN 廣告 | 否 | 推廣／噪音 |
-| #20 progressive-skill | **部分採用，已落地** | 不引 Hermes 專用插件；採用跨宿主的「只安裝當前任務所需 skill 子集」紀律，寫入 `SKILL.md` 與 `methodology/07-stage5-deliver.md` (`c4ea339`) |
+| #20 progressive-skill | **部分採用，已落地** | 不引 Hermes 專用插件；採用跨宿主的「只安裝當前任務所需 skill 子集」紀律，寫入 `SKILL.md` 與 `methodology/07-stage5-deliver.md` |
 
 ### 分支（vs `upstream/main`）
 
@@ -123,8 +123,8 @@ open PR 的 head 不算獨立可引用分支。
 
 ### Codex 接手結果
 
-1. `c4ea339` 已落地 **#22 + #4 最小子集**：預篩、五維 fit、四類產物、三坑、複用檢查、成本提示；沒有 evaluation 或舊宿主假設。
-2. `c4ea339` 已落地 **#10 最小子集**：短內容 V1、`execution_check`、對抗出題、術語回填、可選 SCORECARD；剔除 session 檔與 frontmatter `related_skills`，雙評審改成本感知。
+1. 目前 tree 已落地 **#22 + #4 最小子集**：預篩、五維 fit、四類產物、三坑、複用檢查、成本提示；沒有 evaluation 或舊宿主假設。
+2. 目前 tree 已落地 **#10 最小子集**：短內容 V1、`execution_check`、對抗出題、術語回填、可選 SCORECARD；剔除 session 檔與 frontmatter `related_skills`，雙評審改成本感知。
 3. #20 只採跨宿主安裝節制；#25 仍 defer，Cursor 草稿中的 X adapter 與模板未提交。
 4. 主工作樹與 detached 隔離候選都跑過 `pwsh -NoProfile -File tools\dev_check.ps1`：20 passed、Ruff/validator/link checker 全綠。
 
@@ -170,9 +170,29 @@ open PR 的 head 不算獨立可引用分支。
 新增 `tests/test_dependency_freshness.py` 9 條把兩條出口、宣告精度比較與「過期後恢復追問」
 釘住。
 
-### 水位
+### 水位（2026-08-23 當日）
 
 - PR：已看到 **#26**（`reviewed_pr_through` 由 25 推進到 26）
 - issue：仍是 **#20**，沒有新的
-- commit baseline 仍是 `3a8c23a`（`3a8c23a..upstream/main` 為 0）
-- PR #26 head：`patch-1`（作者 `suonian`）
+- commit baseline 當時是 `3a8c23a`；2026-08-27 已推進，見下節
+
+## 2026-08-27：審查四筆新 upstream commit；維持 AGPL；不回貢
+
+`3a8c23a..upstream/main` 有四筆，已逐筆讀 diff。本 fork 不開上游 PR。
+
+| Commit | 動了什麼 | 結論 |
+| --- | --- | --- |
+| `7e0d58a92060a838fa10d319e7232e163e79506f` | `assets/wecom-cangjie-group-qr.png` | **略過**。企微 QR 是作者宣傳；本 fork README 禁止嵌入。 |
+| `a47a604b3940eda9bb0c83a276626ffa0c87d7e5` | 三語 README 加 `README.ja.md` 語言切換 | **略過日文連結**。本 fork 已有繁中／英文切換，不收第三語系。 |
+| `f751bf9ff9f833cff702fe48d31ebd9d407d4b05` | `LICENSE` AGPL→MIT；根 README 改英文；新增 `README.zh-CN.md` | **略過授權與入口重組**。本 fork 的 overlay 與 `NOTICE.md` 仍是 AGPL-3.0；作者可對自己之後的上游工作改 MIT，但不能自動把本線已宣告的 AGPL 修改改成 MIT。繁中仍是本線主入口。 |
+| `5f03a4cd8b521673f7a67ca6279330ec943bb369` | 英文 README 補 DeepSeek／影片表／示例列／官網／QR／作者段 | **略過宣傳與官網**。示例表（黃帝內經合併、影片蒸餾區）本線 README **已經有**，無需再合。 |
+
+觸發條件：上游若把 MIT 變更寫進 `SKILL.md`／方法論（而不只是 README／LICENSE），或示例表出現本線沒有的新公開倉庫，再讀那些檔。
+
+Open PR 仍是 #4/#5/#10/#15/#22/#24/#26；#25 遠端已不可解析（fork/PR 消失），維持先前「暫不引 X adapter」結論。issue 最大仍是 #20。
+
+### 水位（2026-08-27）
+
+- commit：`reviewed_through` = `5f03a4cd8b521673f7a67ca6279330ec943bb369`
+- PR：仍 **#26**
+- issue：仍 **#20**

@@ -41,7 +41,7 @@
 
 ## 2026-08-22：選擇性引用尚未合併的產品 PR（第一輪已落地）
 
-**決定**：採用 #24、#5、#15 正文強化（不含 `trigger_words` frontmatter）。詳見落地 commit `75463cf`。
+**決定**：採用 #24、#5、#15 正文強化（不含 `trigger_words` frontmatter）。產品內容在目前 `origin/main`（2026-08-23 `6bef9fd` 壓縮歷史後，舊內部 SHA 已不在祖先鏈）。
 
 **理由**：
 - 維護者常用 Codex；#24 是相容性修正。frontmatter 只留 `name`+`description`。
@@ -73,11 +73,11 @@
 - 產品子集落地交給 Codex（或後續 session）；當時清單現已更新為 `docs/UPSTREAM.md`「Codex 接手結果」。
 - 落地後必須跑 Windows gate，並更新 UPSTREAM 狀態列與本檔。
 
-**後續狀態**：2026-08-23 已由 `c4ea339` 完成選擇性落地；下節記錄最終取捨，取代「待 Codex」狀態。
+**後續狀態**：2026-08-23 已完成選擇性落地（內容在目前 tree）；下節記錄最終取捨，取代「待 Codex」狀態。
 
 ## 2026-08-23：落地 #22／#10 子集，部分採用 #4／issue #20
 
-**決定**：以 `c4ea339` 落地適配預篩、短內容驗證、執行品質測試、對抗出題、術語回填與可選記分卡。這不是整支合併任何 open PR，而是保留既有 Codex/frontmatter/Windows 契約的最小重做。
+**決定**：落地適配預篩、短內容驗證、執行品質測試、對抗出題、術語回填與可選記分卡。這不是整支合併任何 open PR，而是保留既有 Codex/frontmatter/Windows 契約的最小重做。產品內容在目前 `origin/main`。
 
 **最終取捨**：
 
@@ -90,6 +90,23 @@
 **驗證**：主工作樹與 detached 隔離候選均通過 Windows gate：20 tests、Ruff E9/F、`validate_skill.py` 與相對連結檢查全綠。
 
 **限制**：未來只有 open PR head SHA 改變、出現新 issue/PR，或本 fork 出現實際 X 來源需求時才重開相應評估；相同 head 不重讀相同 diff。
+
+## 2026-08-27：略過上游四筆；維持 AGPL；不回貢
+
+**決定**：`3a8c23a..upstream/main` 的四筆全部**略過**，`reviewed_through` 推進到 `5f03a4cd8b521673f7a67ca6279330ec943bb369`。本線 `LICENSE` 與 `NOTICE.md` 維持 GNU AGPL v3.0。本輪不開上游 PR。
+
+| Commit | 結論 |
+| --- | --- |
+| `7e0d58a92060a838fa10d319e7232e163e79506f` | 只換企微 QR 圖。宣傳資產，略過。 |
+| `a47a604b3940eda9bb0c83a276626ffa0c87d7e5` | 三語 README 加日文切換。本線不收第三語系，略過。 |
+| `f751bf9ff9f833cff702fe48d31ebd9d407d4b05` | `LICENSE` AGPL→MIT；根 README 改英文預設。本 fork overlay 已宣告 AGPL，不能因上游之後的工作自動改授權。略過。 |
+| `5f03a4cd8b521673f7a67ca6279330ec943bb369` | 英文 README 補 DeepSeek／影片表／示例，也帶官網／QR／作者段。宣傳略過；示例表本線 README 已有。 |
+
+**理由**：作者可對上游之後的工作改 MIT；本線已宣告的 AGPL 修改與 `NOTICE.md` 不能自動跟著改。繁中仍是公開主入口。QR、官網、作者段與 `README.ja.md` 本來就在禁止轉載清單裡。
+
+**同時修的 fork-local findings**（見 `REVIEW.md`）：清掉壓縮歷史後失效的內部 SHA、gitignore 補電子書／cookie／credentials、star-history checkout 改 SHA pin、`FORK.md` 補產品修正清單。
+
+**觸發條件**：上游若把 MIT 變更寫進 `SKILL.md`／方法論（而不只是 README／LICENSE），或示例表出現本線沒有的新公開倉庫，再讀那些檔。Open PR head 未變則不重評。
 
 ## 2026-08-22：公開文件只留繁中與英文；README 只留 credit
 

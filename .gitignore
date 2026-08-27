@@ -21,5 +21,12 @@ sources/
 transcripts/
 *.pdf
 *.epub
+*.mobi
+*.azw
+*.azw3
+*.docx
 *.srt
 *.vtt
+cookies.txt
+cookies.json
+credentials.json

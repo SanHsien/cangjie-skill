@@ -26,14 +26,18 @@
 | `.github/workflows/upstream-check.yml` | 每週對 `upstream/main` 做未審查 commit 檢查 |
 | `.github/workflows/update-star-history.yml` | 加上 repo 閘門，避免本 fork 沒有 secret 卻每天失敗 |
 | `docs/DECISIONS.md`、`docs/UPSTREAM.md`、`docs/DEVELOPMENT.md` | fork 維護文件 |
+| `REVIEW.md` | 全庫風險快照；2026-08-27 可修 findings 已關；不回貢 |
 
 產品 `SKILL.md`、`methodology/`、`extractors/`、`templates/` 以上游為準；本 fork 已採用的產品修正記在下方與 [`docs/DECISIONS.md`](docs/DECISIONS.md)。
 
-本 fork 已引用、尚未進上游 `main` 的產品修正：
+本 fork 已引用、尚未進上游 `main` 的產品修正（內容在目前 `origin/main`；2026-08-23 壓縮歷史後舊落地 SHA 已不在祖先鏈）：
 
 - Codex 跨宿主（對齊上游 PR #24）：`agents/openai.yaml`、分批並行、frontmatter 只留 `name` + `description`、安裝路徑含 `~/.agents/skills/`
 - 來源文本安全護欄（對齊上游 PR #5）
 - darwin 模板強化寫在正文（對齊上游 PR #15 的 CHECKPOINT / 反模式 / 決策樹 / 兩條跨 skill 測試；**不**把 `trigger_words` 寫進 frontmatter）
+- 階段 0.5 預篩與三坑（對齊上游 PR #22 子集；複用檢查改寫、可跳過）
+- book-fit 五維／四類產物判斷併入預篩（對齊上游 PR #4 概念，不帶 evaluation 樣本）
+- 短內容 V1、`execution_check`、對抗出題、術語回填、可選 SCORECARD（對齊上游 PR #10 子集；剔除 session 檔與 `related_skills` frontmatter）
 
 ## 分支與 remote
 

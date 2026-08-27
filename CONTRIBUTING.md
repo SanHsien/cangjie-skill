@@ -2,7 +2,7 @@
 
 ## 開始前
 
-1. 先讀 [`AGENTS.md`](AGENTS.md)、[`FORK.md`](FORK.md) 與 [`README.md`](README.md)。
+1. 先讀 [`AGENTS.md`](AGENTS.md)、[`FORK.md`](FORK.md)、[`README.md`](README.md) 與 [`REVIEW.md`](REVIEW.md)。
 2. 確認問題在最新 `main` 仍可重現，並查過既有 Issues。
 3. 產品方法論、提取器或 `SKILL.md` 的實質變更，優先考慮回報 [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill)。
 4. 不要附上書籍全文、字幕、轉寫稿、蒸餾產出或任何憑證。

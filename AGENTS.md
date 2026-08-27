@@ -88,6 +88,7 @@ pwsh -NoProfile -File tools\dev_check.ps1
 - `docs/UPSTREAM.md`：upstream remote 與審查清冊。
 - `docs/DEVELOPMENT.md`：本機開發與驗收指令。
 - `docs/DECISIONS.md`：長期取捨。
+- `REVIEW.md`：全庫風險快照，不是每個一般 bug 的流水帳。
 - `CONTRIBUTING.md` / `SECURITY.md` / `CODE_OF_CONDUCT.md`：本 fork 的貢獻、安全回報與行為準則。
 - `CHANGELOG.md` / `CHANGELOG.en.md`：**只記本 fork 的維護歷史**，不複製上游產品演進。
   上游逐筆採用／略過的理由仍寫在 `docs/DECISIONS.md`，兩者不要互相搬運。
