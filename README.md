@@ -4,7 +4,7 @@
 
 ### 把書、長影片、播客裡的方法論，蒸餾成可呼叫的 AI Skills
 
-[![License: GNU AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](./LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Method: RIA--TV++](https://img.shields.io/badge/Method-RIA--TV++-2ea44f.svg)](./SKILL.md)
 [![Platform: OpenClaw](https://img.shields.io/badge/Platform-OpenClaw-1677ff.svg)](https://github.com/openclaw/openclaw)
 [![Platform: Claude Code](https://img.shields.io/badge/Platform-Claude%20Code-f97316.svg)](https://code.claude.com/)
@@ -21,7 +21,7 @@
 
 </div>
 
-> **這是 [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill) 的 Windows-first 維護型 fork**，沿用 GNU AGPL v3.0 與完整 Git 歷史。產品 Skill、方法論與模板跟隨上游；本維護線補上繁中入口、Windows 開發／驗收 gate，以及逐筆審查的上游追蹤。差異見 [`FORK.md`](FORK.md)，同步策略見 [`docs/UPSTREAM.md`](docs/UPSTREAM.md)，風險快照見 [`REVIEW.md`](REVIEW.md)。
+> **這是 [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill) 的 Windows-first 維護型 fork**，沿用 MIT 與完整 Git 歷史。產品 Skill、方法論與模板跟隨上游；本維護線補上繁中入口、Windows 開發／驗收 gate，以及逐筆審查的上游追蹤。差異見 [`FORK.md`](FORK.md)，同步策略見 [`docs/UPSTREAM.md`](docs/UPSTREAM.md)，風險快照見 [`REVIEW.md`](REVIEW.md)。
 
 ## DeepSeek Harness 外掛
 
@@ -202,7 +202,7 @@ RIA-TV++ 這個名字拆開看：
 cangjie-skill/
 ├── README.md              ← 繁中公開入口（本 fork）
 ├── README.en.md           ← English version
-├── LICENSE                ← GNU AGPL v3.0
+├── LICENSE                ← MIT
 ├── SKILL.md               ← 元 skill 定義（產品規格，不要改寫成維護索引）
 ├── agents/openai.yaml     ← Codex UI 元資料
 ├── methodology/           ← RIA-TV++ 各階段的方法論文檔
@@ -253,6 +253,6 @@ cangjie-skill/
 
 ## 來源與授權
 
-本倉庫 fork 自 [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill)，沿用 GNU AGPL v3.0。產品 `SKILL.md`、方法論、提取器與模板為上游原作。完整標示見 [`LICENSE`](LICENSE) 與 [`NOTICE`](NOTICE.md)。
+本倉庫 fork 自 [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill)，現行授權為 MIT（上游 2026-08 從 AGPL 改來；本線 overlay 同步以 MIT 發佈）。產品 `SKILL.md`、方法論、提取器與模板為上游原作。完整標示見 [`LICENSE`](LICENSE) 與 [`NOTICE`](NOTICE.md)。
 
 本 fork 的維護變更記在 [`CHANGELOG.md`](CHANGELOG.md)；與上游的關係與差異見 [`FORK.md`](FORK.md)。

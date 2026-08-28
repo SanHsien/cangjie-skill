@@ -1,7 +1,7 @@
 # Fork 維護說明
 
 本 repo fork 自 [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill)，
-沿用 GNU Affero General Public License v3.0 與完整 Git 歷史。
+沿用 MIT License 與完整 Git 歷史。上游原作曾以 GNU AGPL v3.0 發佈，2026-08 改 MIT；本線 overlay 同步以 MIT 發佈。
 
 ## 為什麼維護 fork
 

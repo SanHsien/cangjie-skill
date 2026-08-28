@@ -1,17 +1,17 @@
 # Repository review（Windows-first）
 
-- Review date: 2026-08-27
+- Review date: 2026-08-27；授權更正 2026-08-28
 - Review baseline: `4453b34f6580097fd86de858b364dea551d49341`
-- Remediation: 同日 fork-local overlay（不回貢）
+- Remediation: 2026-08-27 fork-local overlay；2026-08-28 跟上游 MIT（不回貢）
 - Upstream reviewed through: `5f03a4cd8b521673f7a67ca6279330ec943bb369`
 - Primary environment: Windows 11、PowerShell、Python 3.14（本機 gate 與 CI Windows job）；Ubuntu CI 補 3.9–3.14
-- Status: 維護骨架可用。R-01～R-05 已在本線修。R-06（不跟上游改 MIT／英文預設 README）與 R-07（star-history 因 `git push` 不關 checkout credentials）接受。
+- Status: 維護骨架可用。R-01～R-05 已在 2026-08-27 修。R-06 於 2026-08-28 改為跟 MIT（仍不跟英文預設 README／日文／宣傳）。R-07（star-history 因 `git push` 不關 checkout credentials）接受。
 
 ## 結論
 
 這個 fork 適合作為 Windows 本機、給 Agent 維護的 Cangjie 蒸餾線。產品行為跟隨 `kangarooking/cangjie-skill` 的方法論與模板，再加上本線 overlay：繁中／英文公開入口、Windows gate、逐筆上游審查，以及已落地的 Codex／安全護欄／預篩／短內容驗證子集。
 
-本線 `LICENSE` 與 `NOTICE.md` 仍是 GNU AGPL v3.0。上游 2026-08 把之後的工作改成 MIT、根 README 改英文預設，那是上游自己的決定，不能自動改掉本 fork 已宣告的 copyleft overlay。
+本線 `LICENSE` 與 `NOTICE.md` 現為 MIT。上游 2026-08 把原作改成 MIT；2026-08-27 審查時沒有自動跟，因為同一筆 commit 還改了英文預設 README。2026-08-28 維護者決定只跟授權，不跟入口重組與宣傳。
 
 不把 fork 當成第二個官方產品 repo。DeepSeek Harness 安裝包、官網、星圖、社群與 QR 仍屬上游。本線 **沒有**獨立 CLI；執行時由宿主 Agent 讀 `SKILL.md` 跑 RIA-TV++。
 
@@ -54,6 +54,10 @@ python tools/check_upstream_updates.py --strict
 → 無新未審 commit（reviewed_through 已蓋過 5f03a4c）
 ```
 
+### 2026-08-28 授權更正
+
+維護者決定跟上游 MIT。只改 `LICENSE`／`NOTICE.md`／公開入口宣告與測試契約；**沒有** cherry-pick `f751bf9` 的 README 重組。
+
 ## 已修 findings
 
 | ID | 嚴重度 | 做了什麼 |
@@ -63,17 +67,18 @@ python tools/check_upstream_updates.py --strict
 | R-03 | P3 | `update-star-history.yml` checkout 改與 CI 相同的 SHA pin `3d3c42e…`（v7.0.1） |
 | R-04 | P3 | `FORK.md` 補上已落地的 #22／#4／#10 產品修正清單 |
 | R-05 | P2 | 四筆未審 upstream commit 逐筆記錄略過理由，`reviewed_through` 推進到 `5f03a4cd8b521673f7a67ca6279330ec943bb369` |
+| R-06 | P1 | 2026-08-28：`LICENSE`／overlay 改 MIT，對齊上游；**仍不**改英文預設 README、不收第三語系、不嵌入宣傳 |
 
 ## 接受、不改契約
 
 | ID | 嚴重度 | 處理 |
 |---|---|---|
-| R-06 | P1 | **不**把 `LICENSE` 換成 MIT，**不**把根 README 改成英文預設，**不**收 `README.ja.md`／`README.zh-CN.md`，**不**嵌入官網／QR／星圖／作者宣傳 |
 | R-07 | P3 | star-history job 會 `git push`，**不加** `persist-credentials: false`。該 workflow 已閘在上游 repo，本 fork 排程 skipped |
+| R-06 其餘 | P1 | **不**把根 README 改成英文預設，**不**收 `README.ja.md`／`README.zh-CN.md`，**不**嵌入官網／QR／星圖／作者宣傳 |
 
 ## 已檢查、不列為 finding
 
-- `gh api repos/SanHsien/cangjie-skill` 層：fork、parent 為 `kangarooking/cangjie-skill`，預設分支 `main`。
+- `LICENSE` 現為 MIT（`kangarooking` 與 `SanHsien` 兩行 copyright）；`NOTICE.md` 保留「原本 AGPL、2026-08 改 MIT」的歷史。
 - 產品 `SKILL.md` frontmatter 只留 `name` + `description`；模板無 `trigger_words`／`related_skills`。
 - 未提交 `source-adapters/x-twitter.md`；#25 遠端 GraphQL 已不可解析，維持暫不引檔。
 - Open PR #4/#5/#10/#15/#22/#24/#26 head 未變，不重評相同 diff。
@@ -96,4 +101,4 @@ python tools/check_upstream_updates.py --strict
 
 1. 之後維護直接推 `origin/main`。回貢需當次對話明確同意。
 2. 週排程 Upstream check 應隨 baseline 推進轉綠；若再紅，先看是不是又有新 commit，不要把 watermark 往回退。
-3. 上游若把 MIT 寫進 `SKILL.md` 或方法論（而不只是 README／LICENSE），再回來評產品契約，而不是自動改本線授權。
+3. 上游若再改授權，仍單獨決定，不要跟 README／宣傳綁在同一筆 merge。

@@ -134,7 +134,7 @@ def test_readme_keeps_credit_without_author_promotion() -> None:
             assert needle not in text, f"{name} still promotes {needle}"
         assert "kangarooking/cangjie-skill" in text
         assert "NOTICE.md" in text
-        assert "AGPL" in text
+        assert "MIT" in text
         assert "不是本 fork 的發行物" in (ROOT / "README.md").read_text(encoding="utf-8")
         assert "not released by this fork" in (ROOT / "README.en.md").read_text(encoding="utf-8")
         zh = (ROOT / "README.md").read_text(encoding="utf-8")
@@ -241,18 +241,20 @@ def test_review_snapshot_has_required_sections() -> None:
     assert "## 接受、不改契約" in text
     assert "## 尚未宣稱範圍" in text
     assert "不回貢" in text
-    assert "AGPL" in text
+    assert "MIT" in text
 
 
-def test_fork_license_remains_agpl() -> None:
+def test_fork_license_is_mit() -> None:
     license_text = (ROOT / "LICENSE").read_text(encoding="utf-8")
     notice = (ROOT / "NOTICE.md").read_text(encoding="utf-8")
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "GNU AFFERO GENERAL PUBLIC LICENSE" in license_text
-    assert "Version 3" in license_text
-    assert "AGPL" in notice
-    assert "AGPL" in readme
-    assert "MIT License" not in license_text
+    assert license_text.startswith("MIT License")
+    assert "Copyright (c) 2026 kangarooking" in license_text
+    assert "Copyright (c) 2026 SanHsien" in license_text
+    assert "GNU AFFERO GENERAL PUBLIC LICENSE" not in license_text
+    assert "MIT" in notice
+    assert "MIT" in readme
+    assert "License: MIT" in readme
 
 
 def test_docs_do_not_cite_squashed_internal_shas() -> None:

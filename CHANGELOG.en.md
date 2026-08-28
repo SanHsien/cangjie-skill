@@ -11,7 +11,16 @@ adopt/skip reasoning is recorded in [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
 ---
 
-## 2026-08-27 (full-repo review; four upstream commits skipped; AGPL kept)
+## 2026-08-28 (follow upstream MIT; do not follow the README reshuffle)
+
+### Changed
+
+- **Relicensed to MIT.** Upstream `f751bf9` moved the original work to MIT; this line's `LICENSE`, `NOTICE.md`, and overlay now ship as MIT. The GitHub badge matches.
+- **The rest of that commit is still skipped.** Traditional Chinese stays the primary entry; `README.ja.md` / `README.zh-CN.md` are not taken; site, QR, and author promo stay out.
+
+The 2026-08-27 review kept AGPL because a license change must not ride in with a promo/README merge. The maintainer then chose to follow the license item the next day.
+
+## 2026-08-27 (full-repo review; four upstream commits skipped; AGPL kept that day)
 
 ### Added
 

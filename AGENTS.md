@@ -4,11 +4,11 @@
 
 ## 專案定位
 
-這是 [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill) 的 GNU AGPL v3.0 fork。
+這是 [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill) 的 MIT fork。
 核心價值是把書、長影片轉寫、播客文字稿、課程與訪談裡的方法論，蒸餾成可呼叫、可組合、可壓力測試的 Agent Skills，而不是再做一份摘要筆記。
 
 `origin` 是 `SanHsien/cangjie-skill`，`upstream` 是原作者 repo，預設分支皆為 `main`。
-保留上游作者、AGPL-3.0 授權與產品 `SKILL.md`。本 fork 的維護差異記在 [`FORK.md`](FORK.md) 與 [`docs/DECISIONS.md`](docs/DECISIONS.md)。
+保留上游作者、MIT 授權與產品 `SKILL.md`。本 fork 的維護差異記在 [`FORK.md`](FORK.md) 與 [`docs/DECISIONS.md`](docs/DECISIONS.md)。
 
 主要開發與完整驗收環境是 **Windows 11 + PowerShell**；Ubuntu CI 補跨平台相容性。
 

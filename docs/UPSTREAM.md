@@ -176,7 +176,7 @@ open PR 的 head 不算獨立可引用分支。
 - issue：仍是 **#20**，沒有新的
 - commit baseline 當時是 `3a8c23a`；2026-08-27 已推進，見下節
 
-## 2026-08-27：審查四筆新 upstream commit；維持 AGPL；不回貢
+## 2026-08-27：審查四筆新 upstream commit；當時維持 AGPL；不回貢
 
 `3a8c23a..upstream/main` 有四筆，已逐筆讀 diff。本 fork 不開上游 PR。
 
@@ -184,7 +184,7 @@ open PR 的 head 不算獨立可引用分支。
 | --- | --- | --- |
 | `7e0d58a92060a838fa10d319e7232e163e79506f` | `assets/wecom-cangjie-group-qr.png` | **略過**。企微 QR 是作者宣傳；本 fork README 禁止嵌入。 |
 | `a47a604b3940eda9bb0c83a276626ffa0c87d7e5` | 三語 README 加 `README.ja.md` 語言切換 | **略過日文連結**。本 fork 已有繁中／英文切換，不收第三語系。 |
-| `f751bf9ff9f833cff702fe48d31ebd9d407d4b05` | `LICENSE` AGPL→MIT；根 README 改英文；新增 `README.zh-CN.md` | **略過授權與入口重組**。本 fork 的 overlay 與 `NOTICE.md` 仍是 AGPL-3.0；作者可對自己之後的上游工作改 MIT，但不能自動把本線已宣告的 AGPL 修改改成 MIT。繁中仍是本線主入口。 |
+| `f751bf9ff9f833cff702fe48d31ebd9d407d4b05` | `LICENSE` AGPL→MIT；根 README 改英文；新增 `README.zh-CN.md` | 2026-08-27 **整筆略過**。2026-08-28 **只跟授權**（見下節）；入口重組仍略過。 |
 | `5f03a4cd8b521673f7a67ca6279330ec943bb369` | 英文 README 補 DeepSeek／影片表／示例列／官網／QR／作者段 | **略過宣傳與官網**。示例表（黃帝內經合併、影片蒸餾區）本線 README **已經有**，無需再合。 |
 
 觸發條件：上游若把 MIT 變更寫進 `SKILL.md`／方法論（而不只是 README／LICENSE），或示例表出現本線沒有的新公開倉庫，再讀那些檔。
@@ -196,3 +196,12 @@ Open PR 仍是 #4/#5/#10/#15/#22/#24/#26；#25 遠端已不可解析（fork/PR �
 - commit：`reviewed_through` = `5f03a4cd8b521673f7a67ca6279330ec943bb369`
 - PR：仍 **#26**
 - issue：仍 **#20**
+
+## 2026-08-28：採用上游 MIT；仍不跟入口重組
+
+`f751bf9` 同時做了兩件事：把 `LICENSE` 換成 MIT，以及把根 README 改成英文預設並新增 `README.zh-CN.md`。2026-08-27 整筆略過。2026-08-28 維護者決定**只跟授權**：
+
+- **採用**：`LICENSE` 改 MIT；本線 overlay 同步以 MIT 宣告（`NOTICE.md`、README badge、AGENTS／FORK）。
+- **仍略過**：英文預設 README、`README.zh-CN.md`、`README.ja.md`、官網／QR／作者宣傳。
+
+這不是 cherry-pick 整支 `f751bf9`。水位不變（已在 2026-08-27 審過這四筆）。

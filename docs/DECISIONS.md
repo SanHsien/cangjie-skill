@@ -8,11 +8,13 @@
 
 **限制**：
 
-- 不把 fork 包裝成原創專案，不移除原作者與 AGPL 標示。
+- 不把 fork 包裝成原創專案，不移除原作者與授權標示。
 - `SKILL.md` 保持產品規格，不用維護索引覆寫。
 - 不把產品方法論翻譯成繁體；產品語言跟隨上游。
 - 上游更新必須逐筆審查。
 - 不回貢，除非維護者在當次對話明確同意。
+
+**後續狀態**：2026-08-28 授權改 MIT（見該節）。繁中入口、不宣傳、不回貢的限制仍有效。
 
 ## 2026-08-22：維護線直接推 main
 
@@ -91,7 +93,7 @@
 
 **限制**：未來只有 open PR head SHA 改變、出現新 issue/PR，或本 fork 出現實際 X 來源需求時才重開相應評估；相同 head 不重讀相同 diff。
 
-## 2026-08-27：略過上游四筆；維持 AGPL；不回貢
+## 2026-08-27：略過上游四筆；當時維持 AGPL；不回貢
 
 **決定**：`3a8c23a..upstream/main` 的四筆全部**略過**，`reviewed_through` 推進到 `5f03a4cd8b521673f7a67ca6279330ec943bb369`。本線 `LICENSE` 與 `NOTICE.md` 維持 GNU AGPL v3.0。本輪不開上游 PR。
 
@@ -99,7 +101,7 @@
 | --- | --- |
 | `7e0d58a92060a838fa10d319e7232e163e79506f` | 只換企微 QR 圖。宣傳資產，略過。 |
 | `a47a604b3940eda9bb0c83a276626ffa0c87d7e5` | 三語 README 加日文切換。本線不收第三語系，略過。 |
-| `f751bf9ff9f833cff702fe48d31ebd9d407d4b05` | `LICENSE` AGPL→MIT；根 README 改英文預設。本 fork overlay 已宣告 AGPL，不能因上游之後的工作自動改授權。略過。 |
+| `f751bf9ff9f833cff702fe48d31ebd9d407d4b05` | `LICENSE` AGPL→MIT；根 README 改英文預設。2026-08-27 整筆略過。2026-08-28 只跟授權（見下節）。 |
 | `5f03a4cd8b521673f7a67ca6279330ec943bb369` | 英文 README 補 DeepSeek／影片表／示例，也帶官網／QR／作者段。宣傳略過；示例表本線 README 已有。 |
 
 **理由**：作者可對上游之後的工作改 MIT；本線已宣告的 AGPL 修改與 `NOTICE.md` 不能自動跟著改。繁中仍是公開主入口。QR、官網、作者段與 `README.ja.md` 本來就在禁止轉載清單裡。
@@ -107,6 +109,19 @@
 **同時修的 fork-local findings**（見 `REVIEW.md`）：清掉壓縮歷史後失效的內部 SHA、gitignore 補電子書／cookie／credentials、star-history checkout 改 SHA pin、`FORK.md` 補產品修正清單。
 
 **觸發條件**：上游若把 MIT 變更寫進 `SKILL.md`／方法論（而不只是 README／LICENSE），或示例表出現本線沒有的新公開倉庫，再讀那些檔。Open PR head 未變則不重評。
+
+**後續狀態**：2026-08-28 維護者決定跟授權（見下節）。QR／日文／英文預設 README／宣傳仍略過。
+
+## 2026-08-28：跟上游改 MIT；不跟入口重組
+
+**決定**：本線 `LICENSE` 與 overlay（`NOTICE.md`、公開入口 badge、本線自己寫的維護檔）改以 MIT 發佈，對齊上游 `f751bf9` 的授權變更。**不**把該 commit 其餘部分合進來：根 README 仍是繁中主入口，不收 `README.ja.md`／`README.zh-CN.md`，不嵌入官網／QR／作者宣傳。
+
+**理由**：上游作者已對原作改發 MIT；本線 overlay 的著作權在維護者，可以同步放寬。維護型 fork 與上游同授權，使用者不會看到「上游 MIT、fork 卻 AGPL」。授權不能跟宣傳包在同一筆 merge 裡自動進來，所以只跟 LICENSE 這一件。
+
+**限制**：
+- 2026-08-28 之前從本 fork 拿到的副本，仍受當時 AGPL-3.0 授權約束。
+- 不 cherry-pick `f751bf9` 整支。
+- Git 歷史裡的舊 AGPL `LICENSE` 仍在；現行 tree 以根目錄 `LICENSE` 為準。
 
 ## 2026-08-22：公開文件只留繁中與英文；README 只留 credit
 

@@ -3,7 +3,7 @@
   "branch": "main",
   "reviewed_through": "5f03a4cd8b521673f7a67ca6279330ec943bb369",
   "reviewed_date": "2026-08-27",
-  "notes": "2026-08-27 reviewed four new upstream commits and skipped all: WeCom QR (7e0d58a), ja README switch (a47a604), AGPL→MIT plus English-default README (f751bf9), and English README promo/site/QR (5f03a4c). This fork keeps AGPL-3.0 in LICENSE and NOTICE.md. Product subsets already in tree (#24/#5/#15 body, #22/#10/#4 concepts, issue #20 install discipline). PR #25 still deferred (remote GraphQL gone). Site/release branches remain rejected. PR watermark still 26; issue watermark still 20. Exact per-item reasons are in docs/UPSTREAM.md.",
+  "notes": "2026-08-27 reviewed four new upstream commits. 2026-08-28 adopted MIT from f751bf9 for LICENSE and this overlay; still skipped English-default README, ja/zh-CN extra READMEs, WeCom QR (7e0d58a), ja switch (a47a604), and English README promo/site/QR (5f03a4c). Product subsets already in tree (#24/#5/#15 body, #22/#10/#4 concepts, issue #20 install discipline). PR #25 still deferred. Site/release branches remain rejected. PR watermark still 26; issue watermark still 20. Exact per-item reasons are in docs/UPSTREAM.md.",
   "reviewed_pr_through": 26,
   "reviewed_issue_through": 20
 }

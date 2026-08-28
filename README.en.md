@@ -6,11 +6,11 @@
 </p>
 
 [![CI](https://github.com/SanHsien/cangjie-skill/actions/workflows/ci.yml/badge.svg)](https://github.com/SanHsien/cangjie-skill/actions/workflows/ci.yml)
-[![License: GNU AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](./LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 Distill a book, long video, or podcast into a set of executable AI skills.
 
-> **This is a Windows-first maintenance fork of [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill).** It keeps the GNU AGPL v3.0 license and full git history. Product behaviour follows upstream; this line adds Traditional Chinese docs, a Windows development gate, and commit-by-commit upstream review. See [`FORK.md`](FORK.md), [`docs/UPSTREAM.md`](docs/UPSTREAM.md), and [`REVIEW.md`](REVIEW.md).
+> **This is a Windows-first maintenance fork of [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill).** It keeps the MIT license and full git history. Product behaviour follows upstream; this line adds Traditional Chinese docs, a Windows development gate, and commit-by-commit upstream review. See [`FORK.md`](FORK.md), [`docs/UPSTREAM.md`](docs/UPSTREAM.md), and [`REVIEW.md`](REVIEW.md).
 
 ## Install the skill
 
@@ -158,7 +158,7 @@ Upstream notes that these were included with the other authors' permission:
 cangjie-skill/
 ├── README.md              ← Traditional Chinese public entry (this fork)
 ├── README.en.md           ← English version
-├── LICENSE                ← GNU AGPL v3.0
+├── LICENSE                ← MIT
 ├── SKILL.md               ← Meta-skill spec (do not rewrite as a maintenance index)
 ├── agents/openai.yaml     ← Codex UI metadata
 ├── methodology/           ← RIA-TV++ stage docs
@@ -209,6 +209,6 @@ Upstream and the community also publish distilled examples as standalone repos. 
 
 ## Source and license
 
-This repository is a fork of [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill) and remains GNU AGPL v3.0. The product `SKILL.md`, methodology, extractors, and templates are upstream work. See [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE.md).
+This repository is a fork of [`kangarooking/cangjie-skill`](https://github.com/kangarooking/cangjie-skill) and is MIT licensed (upstream switched from AGPL in August 2026; this overlay follows). The product `SKILL.md`, methodology, extractors, and templates are upstream work. See [`LICENSE`](LICENSE) and [`NOTICE`](NOTICE.md).
 
 This fork's maintenance changes are recorded in [`CHANGELOG.en.md`](CHANGELOG.en.md); its relationship to and differences from upstream are in [`FORK.md`](FORK.md).
