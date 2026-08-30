@@ -26,13 +26,14 @@ description: Distill a book, long-video transcript, podcast, course, interview, 
 
 ## 核心方法论: RIA-TV++
 
-一个默认预筛选 + 七个执行阶段 + 并行提取 + 三重验证 + darwin 兼容测试的流水线。详见 `methodology/00-overview.md`。
+一个默认预筛选 + 八个执行阶段 + 并行提取 + 三重验证 + 晋级门 + darwin 兼容测试的流水线。详见 `methodology/00-overview.md`。
 
 ```
 阶段 0.5: 适配预筛选         → BOOK_FIT.md (值不值得蒸 / 复用 / 成本)
 阶段 0: Adler 整书理解     → BOOK_OVERVIEW.md
 阶段 1: 5 个 agent 并行提取 → 候选方法论单元池
 阶段 1.5: 三重验证筛选       → 成本感知评审 + V1 自适应 + 通过的单元 (用户轻确认)
+阶段 1.6: 独立 Skill 晋级门  → 每个通过的单元标 promoted / router (软预算 8 个入口)
 阶段 2: RIA++ 构造 skill     → 每个 skill 的 SKILL.md
 阶段 3: Zettelkasten 链接    → INDEX.md + GLOSSARY.md
 阶段 4: 压力测试 (darwin 兼容) → test-prompts.json + execution_check + 对抗题 + 回炉淘汰
@@ -150,9 +151,19 @@ books/<book-slug>/
 
 **用户轻确认** ★: 筛选完成后,把"通过的 N 个候选标题 + 淘汰的 M 个 + 分歧仲裁项 K 个"列表展示给用户:"这 N 个会做成 skill,有想捞回或砍掉的吗?" 得到确认再进入阶段 2 — 阶段 2–4 是最耗时的部分,这一步确认能避免大量返工。
 
+### 阶段 1.6 — 独立 Skill 晋级门 (产品化验证)
+
+读取 `methodology/03b-stage1.6-promotion-gate.md`。阶段 1.5 回答的是"值不值得保留",这一步回答第二个问题:**值不值得成为一个独立、可发现、可安装的 Skill**。把每个通过验证的知识点都变成独立 Skill,会制造安装负担、命名理解成本和相邻能力之间的触发竞争。
+
+对 `verified.md` 里每个单元评五条判据 (独立意图 / 独立契约 / 独立运行 **必须全过**,独立复用 / 独立评测 **至少过一条**),判定写回该单元条目:`晋级: promoted` 或 `晋级: router` 加一句理由。可发现入口总数 (1 个来源路由入口 + 晋级 Skill 数) 默认软预算 **8**。
+
+**未晋级的不进 `rejected/`** — 它们通过了知识验证,只是不单独发现,内容完整留在 `verified.md`,阶段 3 建 `INDEX.md` 时列在来源路由入口底下。
+
+与阶段 0.5 的分工:0.5 在开工前判断这份内容该做成什么**形态**,1.6 在验证之后判断做出来长**几个**。
+
 ### 阶段 2 — RIA++ 构造 skill
 
-对每个通过的单元,按 `templates/SKILL.md.template` 填充:
+对每个 `晋级: promoted` 的单元,按 `templates/SKILL.md.template` 填充 (`router` 单元不各自建 skill,内容留在 `verified.md`):
 
 - **R (Reading)**: 原文引用 ≤150 字/段 (英文原文 ≤100 词/段)
 - **I (Interpretation)**: 用自己的话重写方法论骨架 (避免照搬译本)

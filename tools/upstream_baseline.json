@@ -1,9 +1,9 @@
 {
   "repo": "https://github.com/kangarooking/cangjie-skill.git",
   "branch": "main",
-  "reviewed_through": "5f03a4cd8b521673f7a67ca6279330ec943bb369",
-  "reviewed_date": "2026-08-27",
-  "notes": "2026-08-27 reviewed four new upstream commits. 2026-08-28 adopted MIT from f751bf9 for LICENSE and this overlay; still skipped English-default README, ja/zh-CN extra READMEs, WeCom QR (7e0d58a), ja switch (a47a604), and English README promo/site/QR (5f03a4c). Product subsets already in tree (#24/#5/#15 body, #22/#10/#4 concepts, issue #20 install discipline). PR #25 still deferred. Site/release branches remain rejected. PR watermark still 26; issue watermark still 20. Exact per-item reasons are in docs/UPSTREAM.md.",
-  "reviewed_pr_through": 26,
+  "reviewed_through": "44692125abcdb93eab7b0e7a5ecd6ccadf92dc6f",
+  "reviewed_date": "2026-08-30",
+  "notes": "2026-08-27 reviewed four new upstream commits. 2026-08-28 adopted MIT from f751bf9 for LICENSE and this overlay; still skipped English-default README, ja/zh-CN extra READMEs, WeCom QR (7e0d58a), ja switch (a47a604), and English README promo/site/QR (5f03a4c). Product subsets already in tree (#24/#5/#15 body, #22/#10/#4 concepts, issue #20 install discipline). PR #25 still deferred. Site/release branches remain rejected. PR watermark still 26; issue watermark still 20. Exact per-item reasons are in docs/UPSTREAM.md. 2026-08-30：commit 水位推進到 v2.5.0 之後的 upstream/main tip，PR 水位 26 → 27。9 個 commit 逐筆判定：採用階段 1.6 晉級門（移植設計、改寫成本 fork 的 Markdown 產物），不引用 extractors 的檢索式取塊（依賴本 fork 沒有的 scripts/build_index.py）、website MVP 六個 commit（本 fork 不維護官網）、PR #27 的第三方 skill 索引（本 fork README 結構不同）。逐項理由與觸發條件見 docs/DECISIONS.md 同日條目。",
+  "reviewed_pr_through": 27,
   "reviewed_issue_through": 20
 }

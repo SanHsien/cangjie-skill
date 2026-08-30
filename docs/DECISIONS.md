@@ -167,3 +167,59 @@ commit 水位。那兩個面向不是「查過沒發現」，是根本沒查，�
 綠燈不是「沒有待辦」，是沒有人看。
 
 **觸發條件**：報告列出項目時逐筆讀 diff、把採用／略過理由寫進本檔，然後才推進 baseline 的水位。
+
+
+## 2026-08-30：上游 v2.5.0 逐筆審視（採用晉級門，其餘不引用）
+
+上游在水位 `5f03a4c` 之後累積 9 個 commit。逐筆判定如下；commit 水位推進到 `44692125abcdb93eab7b0e7a5ecd6ccadf92dc6f`（`4469212`）、
+PR 水位 26 → 27、issue 水位維持 20（實查上游 issue 水位以上為 0 筆）。
+
+### 採用：階段 1.6 獨立 Skill 晉級門（來自 `4b922d7` v2.5.0）
+
+**上游要解的問題**：把每個通過驗證的知識點都做成獨立 Skill，會製造安裝負擔、命名理解成本與
+相鄰能力的觸發競爭。上游的《納瓦爾寶典》樣本因此產出 **19 個 Skill**，那是真實讀者回饋
+「Skill 太多」的直接來源。
+
+**本 fork 也有這個缺口（實查）**：`grep -rn "预算|晋级|Skill 数量" methodology/ SKILL.md` 只命中
+`03-stage1.5` 與 `SKILL.md` 裡談**評審模式**的預算（dual_agent / fallback_single_agent），
+與 Skill 數量無關。本 fork 的 `00.5-pre-filter.md` 判的是**開工前的產物形態**（整包／少量 skill／
+替代產物／不該蒸），不是「驗證後哪些該獨立」。所以這一步在本線確實缺，不是重複。
+
+**移植的是設計不是 diff**：上游把判定寫進 Capability Bundle（`verified.yaml` 的 `promotion`
+欄位）並同步 `destinations.json`——**這兩個產物本 fork 都沒有**（本線的流水線產物是
+`verified.md`、`rejected/`、`INDEX.md`，全是 Markdown）。照抄會讓步驟指向不存在的檔案。
+五條判據、軟預算 8、三條硬規則照採；步驟 2 與 4 改寫成寫回 `verified.md` 該單元的
+`晋级: promoted | router` 一行，以及阶段 3 建 `INDEX.md` 時 `router` 單元列在來源路由入口底下。
+
+同步改動：`SKILL.md` 新增阶段 1.6 一節與流水線列、阶段 2 改成只對 `promoted` 單元建 skill、
+「七個執行階段」改「八個」；`methodology/00-overview.md` 的流水線圖補上該框。
+
+### 不引用：extractors 的「上下文策略（v2.2：檢索式取塊）」（同屬 `4b922d7`）
+
+五個 extractor 各加 4–11 行，要求「當 `books/<slug>/.cangjie/index/lexical.sqlite` 存在時，用
+`python3 scripts/build_index.py --query` 召回候選塊」。
+
+**實查**：`git ls-files scripts/` 在本 fork 只有 `generate_star_history.py`；全庫 grep
+`build_index|lexical.sqlite|.cangjie/index` 在產品檔中 0 命中。**本 fork 沒有這條索引管線。**
+那段文字雖然寫了「索引不存在時回退全量掃描」，但它會叫 agent 去跑一支這裡不存在的腳本，
+等於在文件裡留一個假的操作路徑。
+
+**觸發條件**：本 fork 引進索引管線（`scripts/build_index.py` 與 chunk 產物）時，這五段一起補。
+
+### 不引用：website MVP 與其衍生（`7cd5473`／`4cda812`／`ab1e28e`／`cbcb137`／`f8f9e9b`／`4469212`）
+
+六個 commit 全落在 `website/`、`docs/plans/`、`docs/requirements/`、`docs/releases/` 與
+`deploy-pages.yml`／`registry-check.yml`。**本 fork 沒有 `website/` 目錄，也不維護官網與 skill
+registry**——`FORK.md` 寫明本線維護的是 `SKILL.md`／`methodology/`／`extractors/`／`templates/`
+加 Windows 維護骨架。上游官網是上游的發佈面，不是本線的產品面。
+
+**觸發條件**：本 fork 決定要有自己的發佈站台時（目前沒有這個打算）。
+
+### 不引用：PR #27 / commit `b633a4f`「docs: add sunyuchen skill」
+
+在上游三份 README（en / zh-CN / ja）的 Skill Packs 索引加一個第三方 skill 連結。本 fork 的
+README 是**繁中主檔 + `README.en.md` 英文鏡像**，`FORK.md` 明寫「不收第三語系，不轉載作者宣傳」，
+而且 `git diff --stat` 顯示本 fork 已刪掉 `README.ja.md`／`README.zh-CN.md`、主 README 大幅改寫。
+上游索引項不會自動適用。
+
+**觸發條件**：本 fork 要維護自己的第三方 skill 索引時再逐筆決定收哪些。

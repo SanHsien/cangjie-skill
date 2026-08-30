@@ -205,3 +205,20 @@ Open PR 仍是 #4/#5/#10/#15/#22/#24/#26；#25 遠端已不可解析（fork/PR �
 - **仍略過**：英文預設 README、`README.zh-CN.md`、`README.ja.md`、官網／QR／作者宣傳。
 
 這不是 cherry-pick 整支 `f751bf9`。水位不變（已在 2026-08-27 審過這四筆）。
+
+
+## 2026-08-30：v2.5.0 逐筆審視，水位推進到 `44692125abcdb93eab7b0e7a5ecd6ccadf92dc6f`
+
+上游在 `5f03a4c` 之後累積 9 個 commit（website MVP 四筆、需求文件一筆、README 索引一筆、
+merge 一筆、v2.5.0 發版一筆、release 連結一筆）。逐筆結論與觸發條件寫在
+[`DECISIONS.md`](DECISIONS.md) 的同日條目，摘要：
+
+- **採用**：v2.5.0 的**階段 1.6 獨立 Skill 晉級門**。本 fork 實查確認沒有任何 Skill 數量預算，
+  而 `00.5-pre-filter.md` 判的是開工前的產物形態、不是驗證後該獨立幾個，缺口是真的。
+  移植的是設計不是 diff——上游寫 `verified.yaml` 的 `promotion` 欄位與 `destinations.json`，
+  這兩個產物本 fork 都沒有，改寫成寫回 `verified.md`。
+- **不引用**：extractors 的檢索式取塊（依賴本 fork 沒有的 `scripts/build_index.py`）、
+  website MVP 與其衍生六筆（本 fork 不維護官網）、PR #27 的第三方 skill 索引
+  （本 fork README 是繁中主檔 + 英文鏡像，已刪 ja／zh-CN）。
+
+PR 水位 26 → 27。issue 水位維持 20——實查上游 issue 在 #20 以上為 0 筆，是查過為空不是沒查。
