@@ -1,0 +1,79 @@
+{
+  "skill": "{{skill-slug}}",
+  "version": "0.1.0",
+  "source_book": "{{BOOK_TITLE}} — {{AUTHOR}}",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "{{用户的典型话语 1 — 正面场景}}",
+      "expected_behavior": "应激活 {{skill-slug}}, 并 {{期望的具体动作}}",
+      "notes": "{{为什么这是正面场景}}"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "{{用户的典型话语 2}}",
+      "expected_behavior": "...",
+      "notes": "..."
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "{{用户的典型话语 3}}",
+      "expected_behavior": "...",
+      "notes": "..."
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "{{诱饵 1 — 看似相关但实际不该调用}}",
+      "expected_behavior": "不应激活本 skill, 因为 {{理由}}",
+      "notes": "诱饵: {{这是什么类型的诱饵}}"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "{{诱饵 2 — 应触发同书另一个 skill 的场景}}",
+      "expected_behavior": "不应激活本 skill, 应激活 {{sibling-skill-slug}}",
+      "notes": "跨 skill 混淆测试 #1: 防止同书 skill 互相抢调用"
+    },
+    {
+      "id": "should-not-trigger-03",
+      "type": "should_not_trigger",
+      "prompt": "{{诱饵 3 — 应触发同书第三个 skill 的场景}}",
+      "expected_behavior": "不应激活本 skill, 应激活 {{sibling-skill-slug-2}}",
+      "notes": "跨 skill 混淆测试 #2: 防止同书 skill 互相抢调用"
+    },
+    {
+      "id": "execution-check-01",
+      "type": "execution_check",
+      "prompt": "{{应触发本 skill 且需要完整执行 E 段的真实场景}}",
+      "expected_behavior": "应激活 {{skill-slug}}, 并完整执行 E 段: {{关键执行路径}}",
+      "rubric": [
+        "是否走完 E 段的关键步骤",
+        "是否符合 I 段的方法论骨架",
+        "是否使用 A1 案例体现出的推理方向",
+        "是否遵守 B 段边界和判停条件"
+      ],
+      "notes": "执行质量检查: trigger 正确之外,还要看输出是否忠于作者方法论"
+    },
+    {
+      "id": "adversarial-01",
+      "type": "edge_case",
+      "prompt": "{{对抗性出题流程生成的易混淆用户话术}}",
+      "expected_behavior": "{{应调用 / 不应调用 / 应调用相邻 skill,写明理由}}",
+      "notes": "对抗性出题: 优先由独立 agent 只读取 name + description 生成;无 sub-agent 时标记 fallback_self_generated"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "{{边界模糊场景}}",
+      "expected_behavior": "{{期望的合理判断 — 可能是调用, 可能是不调用, 但要说清为什么}}",
+      "notes": "边界: {{为什么这是边界}}"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 3 条 should_not_trigger + 1 条 edge_case + 1 条 execution_check。全部 should_not_trigger 必须通过 (诱饵容错为 0), 且其中至少 2 条是同书兄弟 skill 的场景 (跨 skill 混淆测试)。execution_check 验证 E 段执行质量。adversarial-* 来自独立 agent 或已标记的 fallback_self_generated。不满足此条的 test-prompts.json 视为不合格, 打回重写。"
+}
