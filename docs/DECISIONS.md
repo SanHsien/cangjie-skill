@@ -230,3 +230,21 @@ README 是**繁中主檔 + `README.en.md` 英文鏡像**，`FORK.md` 明寫「�
 上游索引項不會自動適用。
 
 **觸發條件**：本 fork 要維護自己的第三方 skill 索引時再逐筆決定收哪些。
+
+## 2026-09-30：上游 5 個 commit、9 個 PR、2 個 issue 審查（`4469212`..`874eb41`）
+
+本線與上游無共同祖先，採用需 `cherry-pick -x`；實試兩個程式修正皆因檔案不存在而衝突，已中止，未採用。
+本 fork 的 `scripts/` 只有 `generate_star_history.py`（`ls scripts`；見 2026-08-30 條目），上游的
+`cangjie.py`、`compile_single.py`、`impact_analysis.py`、`run_output_evals.py` 等整條編譯／評測管線本線都沒有。
+
+| 項目 | 判定 | 理由 |
+| --- | --- | --- |
+| `e57ea72`／PR #31／issue #29（缺 PyYAML 時 CLI ImportError，`scripts/cangjie.py`、`cangjie_common.py`） | 不適用 | 目標檔本 fork 不存在（cherry-pick 報 `deleted by us`） |
+| `874eb41`／PR #32／issue #30（`also_read` capability_id／slug 雙契約，`compile_single.py`、`impact_analysis.py`） | 不適用 | 同上；本線流水線產物是 Markdown（`verified.md`），沒有 capability 編譯器 |
+| `f61ea3b`（v2.5 toolbook 驗證與打包，31 檔 +1002/-162：`run_output_evals.py`、schemas、`pipeline-check.yml`、`SKILL.md`、methodology） | 不引用 | 主體是本 fork 沒有的編譯／評測管線與 schema；`SKILL.md` 新增的 `coverage-audit.md`、`references.md`、`needs-review.md` 產物依附該管線。觸發條件：本 fork 引進 Capability Bundle 管線時整組重評 |
+| `34e34bc`、`3adf9e6`（DeepSeek Harness bundle、v2.5.0 發布說明，README／CHANGELOG／`docs/releases/`） | 不適用 | 上游發布文件與宣傳；本 fork 有自己的 README 與 CHANGELOG |
+| PR #33（已關閉）、#34（issue 廣告識別機器人／官方 Skill 分享接口） | 不適用 | 上游 repo 的 issue 管理 CI，不屬本 fork |
+| PR #35（Quickstart）、#36（已關閉）、#37（CLI 參數修正）、#39（README.zh-CN 更新） | 不適用 | 文件皆指向 `scripts/cangjie.py` 等本 fork 沒有的 CLI，或是上游簡中 README |
+| PR #38（影片蒸餾的視覺證據檢查，open，4 檔 +109） | 跟隨上游 | 未合併的新功能；合併後由 commit 軸抵達再評 |
+
+無採用項目。水位：commit `874eb414e6414dd6d399222a7e3925206dfdb585`，PR `28` → `39`，issue `20` → `30`。日期 2026-09-30。

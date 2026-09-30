@@ -229,3 +229,8 @@ merge 一筆、v2.5.0 發版一筆、release 連結一筆）。逐筆結論與�
   （本 fork README 是繁中主檔 + 英文鏡像，已刪 ja／zh-CN）。
 
 PR 水位 26 → 27。issue 水位維持 20——實查上游 issue 在 #20 以上為 0 筆，是查過為空不是沒查。
+
+## 2026-09-30：上游 5 個 commit、9 個 PR、2 個 issue 審查
+
+- 逐筆判定見 [`DECISIONS.md`](DECISIONS.md)。無採用項目：上游修正的目標檔（`scripts/cangjie.py` 等）本 fork 不存在。
+- 水位推進到 `874eb414e6414dd6d399222a7e3925206dfdb585`（`874eb41`）；PR：已看到 **#39**；issue：已看到 **#30**。
