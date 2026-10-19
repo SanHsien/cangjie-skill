@@ -248,3 +248,20 @@ README 是**繁中主檔 + `README.en.md` 英文鏡像**，`FORK.md` 明寫「�
 | PR #38（影片蒸餾的視覺證據檢查，open，4 檔 +109） | 跟隨上游 | 未合併的新功能；合併後由 commit 軸抵達再評 |
 
 無採用項目。水位：commit `874eb414e6414dd6d399222a7e3925206dfdb585`，PR `28` → `39`，issue `20` → `30`。日期 2026-09-30。
+
+## 2026-10-09：上游 2 個 commit、2 個 PR、2 條分支審查（`874eb41`..`a28de55`）
+
+**Live evidence**：upstream `main`=`a28de55ba881b9928956a55048f743f7a9e3b23e`；PR 使用 `--state all`
+列舉至 #41，新增 #40/#41；issue 使用 `--state all`，#30 以上沒有項目。fork `main` 無 open PR 或 active
+workflow。
+
+| 對象 | 判定 | 理由與觸發條件 |
+| --- | --- | --- |
+| `1fdc325`／`a28de55` | reject | 分別只在 `README.md` 與 `README.zh-CN.md` 加 external GitHub promo video。fork 的繁中／英文入口與不轉載作者宣傳界線仍成立；本 fork 擁有的教學素材才重審。 |
+| PR #40（`ded9d35`） | defer | optional reference layer 要求本 fork 沒有的 `scripts/compile_single.py`、Capability Bundle 與 `book/source/` 產物；其 `extract_text.py` 也以該管線輸入端為設計前提。不能製造孤立 helper 或只複製引用全文的文件。觸發：引進 compiler/bundle 後，整組連同 copyright removal、Windows extraction tests 與產物 validator 審查。 |
+| PR #41（`8be6135`） | reject | 新增無關 `cjwork_1` 猜數程式與 `guess.exe` binary，沒有蒸餾流程整合或可重現 source-only gate。觸發：移除 binary，提出明確產品介面與測試。 |
+| `agent/deepseek-harness-release`（`d0d0ed4`） | monitor | ahead 3／behind 21 的獨佔內容仍只是 DeepSeek Harness release 文件與附件；fork 無 host integration。觸發：branch head 變動或 fork 明確支援該 host。 |
+| `codex/official-site-redesign`（`0b5ef4a`） | reject | ahead 22／behind 24，內容為 Astro site、cloud hosting、QR、SEO/GEO、IndexNow；違反 fork 不維護網站／外部提交的界線。觸發：明確授權建立 fork website。 |
+
+**後果**：沒有採用項目；commit 水位推進至 `a28de55ba881b9928956a55048f743f7a9e3b23e`，PR 水位 39 → 41，issue
+水位維持 30（本輪實查為空）。水位表示已審，不表示整支上游已合併。

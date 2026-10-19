@@ -29,6 +29,22 @@ python tools\check_upstream_updates.py --strict
 
 Baseline 代表「已審查」，不代表「全部已合併」。
 
+## 2026-10-09：`874eb41..a28de55` 審查
+
+Live inventory：上游 `main` 為 `a28de55ba881b9928956a55048f743f7a9e3b23e`，commit 增量為兩筆；
+PR 用 `--state all` 檢查至 #41，issue 用 `--state all` 檢查至 #30（沒有新增項目）。fork 沒有 open PR 或
+active workflow。
+
+| 對象 | 判定 | 可驗證理由與重審條件 |
+| --- | --- | --- |
+| `1fdc325`、`a28de55` | reject | 兩筆只在上游 `README.md`／`README.zh-CN.md` 增加外部 GitHub promo video；本 fork 維持繁中／英文入口且不轉載作者宣傳。若影片改為本 fork 的可驗證教學素材，再重審。 |
+| PR #40 `feat/reference-layer` | defer | 改動 `scripts/compile_single.py`、新 `extract_text.py` 與 Capability Bundle 的 `book/source/`；本 fork 沒有該 compiler／bundle 管線，不能只搬文件或 helper。若本 fork 引進這條產物管線，連同其回源、copyright 與 Windows regression 一起評估。 |
+| PR #41 `cjwork_1` | reject | 猜數程式與書籍蒸餾 skill 無關，且提交二進位 `guess.exe`；不引入未驗證 executable。只有它重做為無二進位、與產品有明確整合及可重現測試時才重審。 |
+| `agent/deepseek-harness-release` | monitor | 相對 main diverged（ahead 3／behind 21），三筆仍是 DeepSeek Harness release 文件／附件；本 fork 沒有其 host 契約。head 改變或支援該 host 時重審。 |
+| `codex/official-site-redesign` | reject | 相對 main diverged（ahead 22／behind 24），內容是 Astro 官網、cloud hosting、QR、SEO/GEO 與 IndexNow；本 fork 不維護網站或外部提交。僅在明確決定建立本 fork 網站時重審。 |
+
+完整四軸判斷與水位推進寫在 [`DECISIONS.md`](DECISIONS.md)。
+
 ## 2026-09-01：PR #28 不採用
 
 PR #28 是 open 的 Hermes-compatible bundle：新增 40 個檔案、約 4,000 行，包含獨立 scripts、
