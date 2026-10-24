@@ -19,7 +19,7 @@
 | 項目 | 說明 |
 |---|---|
 | `README.md` | 繁中主檔；英文鏡像在 `README.en.md`。不收第三語系，不轉載作者宣傳 |
-| `AGENTS.md` / `CLAUDE.md` | 本 fork 的 AI 維護單一真相源 |
+| `AGENTS.md` | 本 fork 的 AI 維護單一真相源 |
 | `NOTICE.md` / `FORK.md` | 來源、授權與同步說明 |
 | `tools/dev_check.ps1` | Windows 本機一鍵 gate |
 | `.github/workflows/ci.yml` | Ubuntu 3.9–3.14 + Windows Python 3.14：pytest / ruff / Skill 驗證 / 連結檢查 |
