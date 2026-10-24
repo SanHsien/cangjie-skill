@@ -250,3 +250,21 @@ PR 水位 26 → 27。issue 水位維持 20——實查上游 issue 在 #20 以�
 
 - 逐筆判定見 [`DECISIONS.md`](DECISIONS.md)。無採用項目：上游修正的目標檔（`scripts/cangjie.py` 等）本 fork 不存在。
 - 水位推進到 `874eb414e6414dd6d399222a7e3925206dfdb585`（`874eb41`）；PR：已看到 **#39**；issue：已看到 **#30**。
+
+## 2026-10-24：PR #42 AIHOT registry/catalog 審查
+
+Live evidence：upstream main 仍為 a28de55ba881b9928956a55048f743f7a9e3b23e；API compare
+a28de55...main 為 identical，沒有新的已合併 commit。PR 使用 state=all 列舉至 #42：
+kangarooking/cangjie-skill#42 為 open，base a28de55，head ce9b46e82c50bdddfa4a875470504ee31220ce91。
+issue 使用 state=all 且排除 pull request，#30 以上為空。分支 API 仍只有
+agent/deepseek-harness-release d0d0ed4、codex/official-site-redesign 0b5ef4a 與 main a28de55，
+與前次快照相同。
+
+| 對象 | 判定 | 可驗證理由與重審條件 |
+| --- | --- | --- |
+| PR #42 Add AIHOT Chinese AI news querying skill | **reject／本 fork 不引用** | 實際 diff 只有 registry/aihot/entry.yaml（+16，含 AIHOT 中文 AI 資訊條目、第三方 source URL、active/community metadata 與 3 個 use cases）及 website/src/lib/catalog.test.ts（packs 22→23、skills 300→301、community 6→7）。本 fork HEAD 的 git ls-tree -r --name-only HEAD -- registry website 無輸出，registry/website、對應 entry 與 catalog test 均不存在；既有 docs/DECISIONS.md 已記錄本 fork 不引用 website／registry，AGENTS.md 明文禁止新增 hosted backend。不是因 open 狀態或標題拒絕。只有在本 fork 明確建立自己的 registry/catalog/website，並先定義來源驗證、host/terms 與 Windows/CI gate，或 PR head 改變時，才重讀完整 diff 與 source。 |
+
+本輪沒有產品檔、workflow、依賴或驗證規則變更；不安裝／執行 PR 的 skill。水位：commit 維持
+reviewed_through=a28de55ba881b9928956a55048f743f7a9e3b23e，PR 41 → **42**，issue 維持 **30**。
+
+水位代表已審，並不代表採用或上游已合併。

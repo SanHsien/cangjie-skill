@@ -265,3 +265,22 @@ workflow。
 
 **後果**：沒有採用項目；commit 水位推進至 `a28de55ba881b9928956a55048f743f7a9e3b23e`，PR 水位 39 → 41，issue
 水位維持 30（本輪實查為空）。水位表示已審，不表示整支上游已合併。
+
+## 2026-10-24：PR #42 AIHOT registry/catalog（reject）
+
+**決定**：不引用上游 PR #42；不建立 registry、website 或 AIHOT 產品入口。
+
+**實查 diff**：PR #42 base 為 a28de55，head 為 ce9b46e82c50bdddfa4a875470504ee31220ce91，僅新增
+registry/aihot/entry.yaml 16 行，登記 AIHOT 中文 AI 資訊查詢條目（第三方 GitHub source URL、
+active/community metadata、3 個 use cases），以及修改 website/src/lib/catalog.test.ts 的數量期望
+（packs 22→23、skills 300→301、community 6→7）。
+
+**理由**：本 fork HEAD 的 git ls-tree -r --name-only HEAD -- registry website 無輸出，registry、website、
+對應 entry 與 catalog test 都不存在；既有 docs/DECISIONS.md 的 website／registry 取捨已排除這個維護層，
+AGENTS.md 明文禁止新增 hosted backend。這是可驗證的 scope 不適用，不是因 PR open 或標題拒絕。PR head 改變，或本 fork 明確
+決定建立 registry/catalog/website 並先補來源驗證、服務條款、Windows/CI gate 時，才重新審查完整 diff
+與 source。
+
+**四軸水位**：API compare 顯示 upstream main 仍為 a28de55，無新 commit；issues #30 以上為空；既有
+release branches 的 heads 未變。故 commit watermark 不變，PR watermark 41→42，issue watermark 維持 30。
+本輪不安裝／執行 PR skill，也不改產品檔、workflow、依賴或驗證規則。
