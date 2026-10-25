@@ -1,0 +1,8 @@
+{
+  "deferrals": {
+    "ruff": {
+      "deferredLatest": "0.17.2",
+      "reason": "CI selects only E9+F; ruff 0.17.2 passes the same check as 0.16 (verified 2026-10-25), so no code or rule change needs the newer release; floor stays 0.16 to avoid a compatibility promise nothing requires. Re-evaluate when PyPI moves past 0.17.2"
+    }
+  }
+}
