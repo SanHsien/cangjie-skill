@@ -95,12 +95,13 @@ def parse_frontmatter(text):
 
 
 def get_scalar(fm, key):
-    m = re.search(rf"^{re.escape(key)}:[ 	]*(.*)$", fm, re.MULTILINE)
+    m = re.search(rf"^{re.escape(key)}:[ \t]*(.*)$", fm, re.MULTILINE)
     if not m:
         return None
     value = m.group(1).strip()
-    if re.fullmatch(r"[>|][+-]?\d*", value):
-        # Block scalar (`description: >-`): the text is the indented lines below
+    if value == "" or re.fullmatch(r"[>|][+-]?\d*", value):
+        # Block scalar (`description: >-`) or a plain scalar continued on the
+        # next lines: the text is the indented lines below
         # the marker, not the marker. Folded joins them with spaces, literal with
         # newlines; either way the length that matters is the joined text.
         lines = []

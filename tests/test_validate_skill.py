@@ -56,3 +56,10 @@ def test_utf8_bom_does_not_hide_the_frontmatter(tmp_path):
     text = "---\nname: demo\ndescription: d\n---\nbody\n"
     errors, _warns = audit_text(tmp_path, text, encoding="utf-8-sig")
     assert errors == []
+
+
+def test_description_continued_on_the_next_line_is_read(tmp_path):
+    """A plain scalar may start on the line after the key."""
+    text = "---\nname: demo\ndescription:\n  plain continued line\n---\nbody\n"
+    errors, _warns = audit_text(tmp_path, text)
+    assert errors == []
