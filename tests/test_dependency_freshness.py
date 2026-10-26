@@ -114,3 +114,14 @@ def test_report_names_both_exits_so_the_next_person_does_not_invent_a_third() ->
     assert "freshness-hold:" in report
     assert "dependency-deferrals.json" in report
     assert "mute button" in report
+
+
+def test_deferral_matches_a_package_spelled_with_underscores(monkeypatch):
+    """PyPI treats `typing_extensions` and `typing-extensions` as one package."""
+    monkeypatch.setattr(checker, "fetch_pypi_version", lambda name: "4.9.0")
+    rows = checker.collect_status(
+        [{"name": "typing_extensions", "minimum": "4.0", "requirement": "typing_extensions>=4.0",
+          "source": "requirements-dev.txt", "hold": ""}],
+        {"typing-extensions": ("4.9.0", "reviewed")},
+    )
+    assert rows[0]["deferred_reason"] == "reviewed"
