@@ -95,8 +95,22 @@ def parse_frontmatter(text):
 
 
 def get_scalar(fm, key):
-    m = re.search(rf"^{re.escape(key)}:\s*(.*)$", fm, re.MULTILINE)
-    return m.group(1).strip().strip('"').strip("'") if m else None
+    m = re.search(rf"^{re.escape(key)}:[ 	]*(.*)$", fm, re.MULTILINE)
+    if not m:
+        return None
+    value = m.group(1).strip()
+    if re.fullmatch(r"[>|][+-]?\d*", value):
+        # Block scalar (`description: >-`): the text is the indented lines below
+        # the marker, not the marker. Folded joins them with spaces, literal with
+        # newlines; either way the length that matters is the joined text.
+        lines = []
+        for ln in fm[m.end():].splitlines()[1:]:
+            if ln.strip() and not ln[:1].isspace():
+                break
+            lines.append(ln.strip())
+        joiner = " " if value.startswith(">") else "\n"
+        return joiner.join(lines).strip()
+    return value.strip('"').strip("'")
 
 
 def get_list_items(fm, key):
@@ -119,6 +133,15 @@ def top_level_keys(fm):
             if (m := re.match(r"^([A-Za-z][\w-]*):", ln))]
 
 
+def split_tool_grants(text):
+    """`Bash(python3 *) Read, Grep` -> ['Bash(python3 *)', 'Read', 'Grep'].
+
+    Entries are separated by whitespace or commas, but a scoped grant such as
+    `Bash(python3 *)` keeps its own spaces and commas inside the parentheses.
+    """
+    return [t.strip() for t in re.findall(r"[^\s,(]+(?:\([^)]*\))?", text) if t.strip()]
+
+
 def tool_base(entry):
     """Bash(python3 *) -> Bash ; Read -> Read ; My-MCP(do_thing) -> My-MCP."""
     return entry.split("(", 1)[0].strip()
@@ -127,7 +150,7 @@ def tool_base(entry):
 def audit(path, lens="claude"):
     rules = LENSES[lens]
     label = rules["label"]
-    text = Path(path).read_text(encoding="utf-8")
+    text = Path(path).read_text(encoding="utf-8-sig")
     fm, body = parse_frontmatter(text)
     errors, warns = [], []
     if fm is None:
@@ -157,7 +180,7 @@ def audit(path, lens="claude"):
     if not tools:
         inline = get_scalar(fm, "allowed-tools")
         if inline:
-            tools = inline.split()
+            tools = split_tool_grants(inline)
     if tools:  # a restriction is declared -> the host enforces it
         bases = {tool_base(t) for t in tools}
         known = {b for b in bases if b in rules["tools"]}
