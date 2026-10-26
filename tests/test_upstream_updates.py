@@ -113,3 +113,23 @@ def test_upstream_slug(url, expected):
 def test_shipped_baseline_matches_the_documented_upstream():
     baseline = checker.load_baseline()
     assert checker.upstream_slug(baseline["repo"]) is not None
+
+
+def test_missing_gh_binary_reads_as_not_checked(monkeypatch):
+    """`gh` not installed is the "unavailable" case the docstring promises to
+    report as None, not a FileNotFoundError that kills the whole check."""
+
+    def runner(args, **kwargs):
+        raise FileNotFoundError(args[0])
+
+    monkeypatch.setattr(checker.subprocess, "run", runner)
+    assert checker.collect_new_tickets(BASELINE, "pr") is None
+
+
+def test_missing_git_binary_is_an_upstream_check_error(monkeypatch):
+    def runner(args, **kwargs):
+        raise FileNotFoundError(args[0])
+
+    monkeypatch.setattr(checker.subprocess, "run", runner)
+    with pytest.raises(checker.UpstreamCheckError):
+        checker.run_git(["status"], REPO_ROOT)

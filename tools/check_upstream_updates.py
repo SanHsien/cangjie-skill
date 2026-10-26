@@ -45,14 +45,18 @@ def load_baseline(path: Path = BASELINE_PATH) -> dict:
 
 
 def run_git(args: list[str], repo_dir: Path) -> str:
-    result = subprocess.run(
-        ["git", *args],
-        cwd=repo_dir,
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace",
-    )
+    try:
+        result = subprocess.run(
+            ["git", *args],
+            cwd=repo_dir,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+    except OSError as exc:
+        # git missing from PATH is a failed check, not a traceback.
+        raise UpstreamCheckError(f"git {' '.join(args)} failed: {exc}") from exc
     if result.returncode != 0:
         raise UpstreamCheckError(
             f"git {' '.join(args)} failed: {result.stderr.strip()}"
@@ -119,6 +123,14 @@ def upstream_slug(repo_url: str) -> str | None:
     return f"{match['owner']}/{match['name']}" if match else None
 
 
+def _run_optional(command: list[str], **kwargs) -> subprocess.CompletedProcess:
+    """`subprocess.run`, but a missing executable reads as a failed command."""
+    try:
+        return subprocess.run(command, **kwargs)
+    except OSError as exc:
+        return subprocess.CompletedProcess(command, 127, stdout="", stderr=str(exc))
+
+
 def collect_new_tickets(baseline: dict, kind: str) -> list[dict] | None:
     """All PRs or issues numbered above the watermark, closed ones included.
 
@@ -131,7 +143,7 @@ def collect_new_tickets(baseline: dict, kind: str) -> list[dict] | None:
     if not slug:
         return None
     watermark = int(baseline.get(f"reviewed_{kind}_through", 0) or 0)
-    result = subprocess.run(
+    result = _run_optional(
         [
             "gh", kind, "list", "--repo", slug, "--state", "all",
             "--limit", "1000", "--json", "number,title",
