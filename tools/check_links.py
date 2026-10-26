@@ -20,12 +20,16 @@ from urllib.parse import unquote
 ROOT = Path(__file__).resolve().parent.parent
 SKILL = ROOT / "SKILL.md"
 LINK_PATTERN = re.compile(r"\[[^\]]*\]\(([^)]+)\)")
-IMAGE_PATTERN = re.compile(r"!\[[^\]]*\]\(([^)]+)\)")
 HTML_SRC_PATTERN = re.compile(r"""(?is)<img[^>]+src=["']([^"']+)["']""")
 SKILL_PATH_PATTERN = re.compile(
     r"`((?:methodology|extractors|templates|scripts|assets|agents)/[A-Za-z0-9._/-]+)`"
 )
 SKIP_PREFIXES = ("http://", "https://", "mailto:", "tel:", "#")
+# Any URL scheme (ftp:, data:, ...) names something that is not a file in this
+# tree. One letter is left alone so a Windows drive path is still a path.
+SCHEME_PATTERN = re.compile(r"^[A-Za-z][A-Za-z0-9+.-]+:")
+FENCE_PATTERN = re.compile(r"(?ms)^[ \t]*(```|~~~).*?^[ \t]*\1[^\n]*$")
+INLINE_CODE_PATTERN = re.compile(r"`[^`\n]*`")
 
 SKIP_NAMES = {
     "upstream-review-report.md",
@@ -50,8 +54,13 @@ def iter_documents() -> list[Path]:
 
 
 def _missing_relative(path: Path, target: str) -> str | None:
-    target = target.strip().strip("<>")
-    if not target or target.startswith(SKIP_PREFIXES):
+    target = target.strip()
+    if target.startswith("<") and ">" in target:
+        target = target[1:target.index(">")]
+    else:
+        # `[a](file.md "Title")`: the optional title is not part of the path.
+        target = target.split(None, 1)[0] if target else target
+    if not target or target.startswith(SKIP_PREFIXES) or SCHEME_PATTERN.match(target):
         return None
     file_part = unquote(target.split("#", 1)[0])
     if not file_part:
@@ -69,10 +78,13 @@ def _missing_relative(path: Path, target: str) -> str | None:
 def check_document(path: Path) -> list[str]:
     problems: list[str] = []
     text = path.read_text(encoding="utf-8")
-    for pattern in (LINK_PATTERN, IMAGE_PATTERN, HTML_SRC_PATTERN):
+    # Link syntax shown as an example in a code block or span is not a link.
+    text = INLINE_CODE_PATTERN.sub("", FENCE_PATTERN.sub("", text))
+    # `![alt](src)` also matches LINK_PATTERN, so IMAGE_PATTERN would only repeat it.
+    for pattern in (LINK_PATTERN, HTML_SRC_PATTERN):
         for match in pattern.finditer(text):
             missing = _missing_relative(path, match.group(1))
-            if missing:
+            if missing and missing not in problems:
                 problems.append(missing)
     return problems
 
