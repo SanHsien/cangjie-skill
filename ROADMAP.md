@@ -5,14 +5,13 @@
 
 ## 現況
 
-本 repo 是從書、影片與播客蒸餾 Agent Skills 的 Markdown 產品維護線，沒有獨立 CLI（`AGENTS.md:7-8,27-32`）。2026-10-29 快照 open PR、安全告警均為 0，CI、CodeQL、Dependency freshness、Upstream check 最近結果為 success；issue 因停用而未查到，star-history 的 skipped 是既定閘門（2026-10-29 `gh` 查詢，`61ee6a401ef7`；`docs/DECISIONS.md:43-49`）。工具深掃修復已落地，但完整真實來源蒸餾仍無驗收聲明（`52aa4af`；`REVIEW.md:91-96`）。
+本 repo 是從書、影片與播客蒸餾 Agent Skills 的 Markdown 產品維護線，沒有獨立 CLI（`AGENTS.md:7-8,27-32`）。2026-10-29 快照 open PR、安全告警均為 0，CI、CodeQL、Dependency freshness、Upstream check 最近結果為 success；issue 因停用而未查到，star-history 的 skipped 是既定閘門（2026-10-29 `gh` 查詢，`61ee6a401ef7`；`docs/DECISIONS.md:43-49`）。工具深掃修復與中英變更紀錄已落地，但完整真實來源蒸餾仍無驗收聲明（`52aa4af`；`REVIEW.md:91-96`）。
 
 ## 近期：可以直接動手
 
 | 項目 | 為什麼 | 驗收方式 | 建議執行者 | 證據 |
 | --- | --- | --- | --- | --- |
 | 用一份可合法使用的短來源驗證蒸餾流程 | 靜態 gate 沒有驗證預篩、產出與執行品質的完整鏈路 | 維護者選定來源及宿主；只跑一份，核對預篩、PIPELINE_STATE、產出 skill 與 execution_check；保留去識別結果及 SHA，來源與 `books/` 不提交 | 維護者 | `REVIEW.md:93-96`；`AGENTS.md:19,36`；`docs/DECISIONS.md:87-97` |
-| 補本 fork 工具修正的中英變更紀錄 | 現有紀錄尚未反映驗證器與維護工具的修正 | 逐項對照 `a378dd0`、`de913c6`、`fe95337`、`a993f5b`、`52aa4af`，中英紀錄描述一致並通過連結檢查；不抄上游產品歷史 | Claude Haiku | 深掃報告（2026-10-26）〈刻意不修〉；`CHANGELOG.md:14`；`AGENTS.md:94-95` |
 
 ## 中期：等條件成立再做
 

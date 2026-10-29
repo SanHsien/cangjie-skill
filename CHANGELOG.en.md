@@ -11,6 +11,26 @@ adopt/skip reasoning is recorded in [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
 ---
 
+## 2026-10-26 (maintenance tools and validator fixes)
+
+### Fixed
+
+- **`validate_skill.py` handles comma-separated tool lists, block scalars, and BOM (`a378dd0`, `52aa4af`).**
+  - `allowed-tools` was previously split only on whitespace, causing comma-separated lists like `"Bash, Read"` to yield invalid tool names such as `"Bash,"` and trigger false ERRORs, while scoped tools like `"Bash(python3 *)"` were truncated at spaces; now supports commas and parenthesized arguments.
+  - Folded (`>-`) and literal (`|`) block scalar descriptions are now parsed properly instead of treating the header token as the text, which previously bypassed the 1024-character limit and missing-description check; plain scalars continued on the next indented line no longer return empty strings.
+  - Files with a UTF-8 BOM are now recognized without falsely reporting missing frontmatter.
+  - Key regex explicitly spells the tab character as `\t`. Covered by `tests/test_validate_skill.py`.
+- **`check_links.py` ignores link titles, non-HTTP schemes, and code blocks (`de913c6`).**
+  - Markdown links with titles (e.g. `[a](f.md "Title")`) no longer treat the title as part of the file path (avoiding false broken links).
+  - Non-HTTP schemes like `ftp:` and `data:` are no longer looked up as local files.
+  - Link syntax inside code fences and inline code spans is ignored.
+  - Image links (`![alt](url)`) are no longer reported twice. Covered by `tests/test_check_links.py`.
+- **`check_upstream_updates.py` handles missing CLI tools cleanly (`fe95337`).**
+  - When `gh` is missing from PATH, `collect_new_tickets` returns `None` as promised rather than crashing with an unhandled `FileNotFoundError`.
+  - `run_git` raises a named `UpstreamCheckError` (exiting with code 2 and a rendered report) when `git` is missing, preventing raw tracebacks. Covered by `tests/test_upstream_updates.py`.
+- **`check_dependency_freshness.py` normalises package names per PEP 503 (`a993f5b`).**
+  - Deferral lookups now normalise package names (matching `typing-extensions` against `typing_extensions`), preventing reviewed packages from continually flagging as red. Covered by `tests/test_dependency_freshness.py`.
+
 ## 2026-08-28 (follow upstream MIT; do not follow the README reshuffle)
 
 ### Changed

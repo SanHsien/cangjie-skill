@@ -10,6 +10,26 @@
 
 ---
 
+## 2026-10-26（維護工具與規格驗證修復）
+
+### 修復
+
+- **`validate_skill.py` 支援逗號清單、區塊純量與 BOM（`a378dd0`、`52aa4af`）。**
+  - `allowed-tools` 原本僅以空白分割，導致 `"Bash, Read"` 逗號分隔清單被解析為無效名稱 `"Bash,"` 而誤報 ERROR，具引數字串如 `"Bash(python3 *)"` 也會在空格處遭截斷；改為支援逗號與括號範圍。
+  - 支援折疊（`>-`）與保留（`|`）區塊純量 description，避免標記符號被誤判為內容而讓 1024 字元長度與缺失檢查失效；並修復換行縮排續寫的純純量被讀成空字串的問題。
+  - 支援含 UTF-8 BOM 的檔案，不再誤判為缺少 frontmatter。
+  - 鍵名正規表達式以 `\t` 明確表示 Tab。補齊 `tests/test_validate_skill.py`。
+- **`check_links.py` 忽略連結標題、URL scheme 與程式碼區塊（`de913c6`）。**
+  - 帶標題的 Markdown 連結（如 `[a](f.md "Title")`）不再將標題誤當路徑回報假性死鏈。
+  - `ftp:`、`data:` 等非 HTTP URL scheme 不再被誤作為本地檔案查找。
+  - 忽略程式碼區塊（code fence）與行內程式碼（code span）中的偽連結語法。
+  - 修正圖片語法（`![alt](url)`）被雙重回報的問題。補齊 `tests/test_check_links.py`。
+- **`check_upstream_updates.py` 缺少指令時回報不可用而非 traceback（`fe95337`）。**
+  - 環境缺少 `gh` 時，`collect_new_tickets` 依約回傳 `None` 而非拋出未捕獲的 `FileNotFoundError`。
+  - `run_git` 遇缺少 `git` 時拋出具名的 `UpstreamCheckError`（exit 2 並渲染報告），避免非預期的堆疊追蹤。補齊 `tests/test_upstream_updates.py`。
+- **`check_dependency_freshness.py` 依 PEP 503 正規化套件名稱（`a993f5b`）。**
+  - 查詢延後名單（deferrals）時進行名稱正規化，解決以 `typing-extensions` 為鍵無法匹配 `typing_extensions` 宣告導致已審查套件重複報紅的問題。補齊 `tests/test_dependency_freshness.py`。
+
 ## 2026-08-28（跟上游改 MIT；不跟入口重組）
 
 ### 變更
