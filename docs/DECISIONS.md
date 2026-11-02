@@ -284,3 +284,18 @@ AGENTS.md 明文禁止新增 hosted backend。這是可驗證的 scope 不適用
 **四軸水位**：API compare 顯示 upstream main 仍為 a28de55，無新 commit；issues #30 以上為空；既有
 release branches 的 heads 未變。故 commit watermark 不變，PR watermark 41→42，issue watermark 維持 30。
 本輪不安裝／執行 PR skill，也不改產品檔、workflow、依賴或驗證規則。
+
+## 2026-11-02：PR #43 ChatSPSS registry 條目（reject）
+
+**決定**：不採用上游 open PR #43，只推進 PR 審查水位（42 → 43）。
+
+**實查 diff**：PR #43 head 為 f6a5188d239c7081466e0eea7edf70346d60244e，新增 `registry/chatspss/entry.yaml`
+20 行，並修改 `website/src/lib/catalog.test.ts` 3 行（目錄數量期望）。diff 共 2188 位元組，已以
+`grep -nE '\S\s{40,}\S|eval\(|new Function|globalThis|[A-Za-z0-9+/]{80,}'` 掃過，無隱藏內容命中（判準八）。
+
+**理由**：本 fork HEAD 的 `git ls-tree -r --name-only HEAD -- registry website` 無輸出，registry、website
+與 catalog test 都不存在；這與 PR #42 同一類（第三方 skill 登記進本 fork 不維護的目錄層），且 PR 本身
+也承認該 skill 不是仓颉流水線產物。這是可驗證的 scope 不適用，不是因 PR 狀態或標題拒絕。觸發條件：PR head 改變，
+或本 fork 明確決定建立 registry/catalog/website 時重審。
+
+**四軸水位**：commit 仍為 a28de55（上游無新 commit，`--strict` 報告 behind 0）；issue 水位維持 30；本輪不改產品檔、workflow 或依賴。
