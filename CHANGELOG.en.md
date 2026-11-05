@@ -11,6 +11,12 @@ adopt/skip reasoning is recorded in [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
 ---
 
+## 2026-11-05 (dependency freshness review)
+
+### Maintenance
+
+- Reviewed Ruff 0.17.3 release notes, Python support, and the E9/F check; renewed the version-scoped deferral through 0.17.3 while preserving the compatible `ruff>=0.16` floor and existing pytest hold.
+
 ## 2026-10-26 (maintenance tools and validator fixes)
 
 ### Fixed

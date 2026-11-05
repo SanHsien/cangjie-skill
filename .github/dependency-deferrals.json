@@ -1,8 +1,8 @@
 {
   "deferrals": {
     "ruff": {
-      "deferredLatest": "0.17.2",
-      "reason": "CI selects only E9+F; ruff 0.17.2 passes the same check as 0.16 (verified 2026-10-25), so no code or rule change needs the newer release; floor stays 0.16 to avoid a compatibility promise nothing requires. Re-evaluate when PyPI moves past 0.17.2"
+      "deferredLatest": "0.17.3",
+      "reason": "Reviewed 2026-11-05: ruff 0.17.3 release notes cover a preview rule, UP032, performance and documentation, with no E9/F rule change. Installed 0.17.3 passes this repo's E9/F check with target-version py39; its PyPI Requires-Python is >=3.7. Keep the compatible >=0.16 declaration because no new rule or fix used here requires a higher floor; the existing range already permits 0.17.3. Re-evaluate when PyPI moves past 0.17.3 or the selected rules change."
     }
   }
 }

@@ -33,3 +33,5 @@
 
 每週按 `tools/upstream_baseline.json` 水位及已審 head 做增量巡檢；沒有共同祖先不需修歷史，Upstream check 提醒先視為待審項目。
 每月查 Dependency freshness 與 `gh pr list --repo SanHsien/cangjie-skill`；不為更新版本號提高下限、不另造 fork release，其他文件只連結本路線圖。
+
+2026-11-05 已重評 Ruff 0.17.3，更新限版本延後紀錄並保留相容性下限；裁決與重審條件見 `docs/DECISIONS.md` 同日紀錄。

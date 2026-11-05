@@ -1,5 +1,13 @@
 # 維護決策
 
+## 2026-11-05：重評 Ruff 0.17.3，保留相容性下限
+
+**決定**：將 `.github/dependency-deferrals.json` 的 Ruff `deferredLatest` 從 `0.17.2` 更新為 `0.17.3`；`requirements-dev.txt` 的 `ruff>=0.16` 與 pytest Python 3.9 hold 保持原樣。
+
+**理由**：[0.17.3 發行說明](https://github.com/astral-sh/ruff/releases/tag/0.17.3) 涉及 preview 規則、UP032 修正、效能與文件，沒有本 repo 選用的 E9/F 規則變動；PyPI 宣告 Python >=3.7，仍涵蓋 3.9。已安裝的 Ruff 0.17.3 通過 `python -m ruff check --select E9,F --target-version py39 scripts tests tools`。現有範圍已允許安裝新版，沒有提高下限的相容性需求；這次僅重評延後紀錄，不宣稱升級釘版。
+
+**重審條件**：PyPI 超過 `0.17.3` 時延後紀錄自動失效；變更選用規則或出現依賴新版修正的案例時，重新評估下限。
+
 ## 2026-09-01：不納入 Hermes bundle
 
 **決定**：不採用上游 open PR #28，僅推進 PR 審查水位。
