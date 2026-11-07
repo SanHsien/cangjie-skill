@@ -318,7 +318,7 @@ release branches 的 heads 未變。故 commit watermark 不變，PR watermark 4
 
 ## 2026-11-08：蒸餾流程的真實來源驗證——選定來源與方法，留在近期
 
-**決定**：驗證來源定為 Lionel Giles 1910 英譯《孫子兵法》第一章「Laying Plans」，取自 Project Gutenberg eBook #132（`https://www.gutenberg.org/cache/epub/132/pg132.txt`，該檔 1614–1836 行；公版）。抽出的 8688 位元組檔 SHA-256 為 `75513ca81a1743bb3f7320ce7da11adee44687e419c325a794abbc540e9f12f5`。宿主用 `codex exec`，在暫存目錄執行，不動本 repo。這是維護者授權艦隊規劃長做的決定。
+**決定**：驗證來源定為 Lionel Giles 1910 英譯《孫子兵法》第一章「Laying Plans」，取自 Project Gutenberg eBook #132（`https://www.gutenberg.org/cache/epub/132/pg132.txt`，該檔 1614–1836 行；公版）。抽出的 8688 位元組檔 SHA-256 為 `75513ca81a1743bb3f7320ce7da11adee44687e419c325a794abbc540e9f12f5`。宿主用 `codex exec`，在暫存目錄執行，不動本 repo。這是維護者授權的執行者做的決定。
 
 **理由**：`REVIEW.md` 的「尚未宣稱範圍」明載從未用真實來源跑完流水線；靜態 gate（`validate_skill.py`、連結檢查）不經過預篩、產出與 `execution_check`。短篇公版文本能避開授權爭議，也不需把任何書籍或字幕放進 repo。
 
