@@ -315,3 +315,13 @@ release branches 的 heads 未變。故 commit watermark 不變，PR watermark 4
 或本 fork 明確決定建立 registry/catalog/website 時重審。
 
 **四軸水位**：commit 仍為 a28de55（上游無新 commit，`--strict` 報告 behind 0）；issue 水位維持 30；本輪不改產品檔、workflow 或依賴。
+
+## 2026-11-08：蒸餾流程的真實來源驗證——選定來源與方法，留在近期
+
+**決定**：驗證來源定為 Lionel Giles 1910 英譯《孫子兵法》第一章「Laying Plans」，取自 Project Gutenberg eBook #132（`https://www.gutenberg.org/cache/epub/132/pg132.txt`，該檔 1614–1836 行；公版）。抽出的 8688 位元組檔 SHA-256 為 `75513ca81a1743bb3f7320ce7da11adee44687e419c325a794abbc540e9f12f5`。宿主用 `codex exec`，在暫存目錄執行，不動本 repo。這是維護者授權艦隊規劃長做的決定。
+
+**理由**：`REVIEW.md` 的「尚未宣稱範圍」明載從未用真實來源跑完流水線；靜態 gate（`validate_skill.py`、連結檢查）不經過預篩、產出與 `execution_check`。短篇公版文本能避開授權爭議，也不需把任何書籍或字幕放進 repo。
+
+**2026-11-08 的嘗試**：已按上述方法執行 `codex exec -s workspace-write --skip-git-repo-check -C <暫存目錄>`，未開始蒸餾（`books/art-of-war-ch1` 不存在），輸出為 `ERROR: exceeded retry limit, last status: 429 Too Many Requests`，結束碼 1。回報：Codex 週額度要到 2026-11-11 16:27 才重置（未獨立驗證）。因此這一列留在路線圖近期、建議執行者 Codex，額度恢復後照同一方法再跑。
+
+**重審條件**：流程跑完後把結果寫回 `REVIEW.md`；若來源在預篩被判不適合（例如過短），換成同樣公版的其他短篇並記錄原因。
