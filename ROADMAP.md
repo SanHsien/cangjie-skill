@@ -11,7 +11,7 @@
 
 | 項目 | 為什麼 | 驗收方式 | 建議執行者 | 證據 |
 | --- | --- | --- | --- | --- |
-| 用 Lionel Giles 1910 英譯《孫子兵法》第一章「Laying Plans」跑一次完整蒸餾 | 預篩與產出品質只有真實來源能驗；靜態 gate 不經過這條鏈路 | 1. 來源：Project Gutenberg eBook #132 `pg132.txt` 的 Chapter I（約 8.7 KB，公版），抽出後 SHA-256 為 `75513ca81a1743bb3f7320ce7da11adee44687e419c325a794abbc540e9f12f5`。2. 方法：在暫存目錄執行 `codex exec -s workspace-write --skip-git-repo-check -C <暫存目錄>`，提示要求先讀本 repo 的 `SKILL.md` 與 `methodology/`，只跑這一份，slug `art-of-war-ch1`，輸出只寫暫存目錄的 `books/`，不得改本 repo。3. 核對預篩結果、`PIPELINE_STATE.md`、產出 skill 與每個 skill 的 `execution_check`；單一評審降級須在 `PIPELINE_STATE.md` 如實標註。4. 把去識別結果與來源 SHA-256 寫進 `REVIEW.md`「尚未宣稱範圍」，改成已驗證範圍；來源與 `books/` 不提交 | Codex | `REVIEW.md:93-96`；`AGENTS.md:19,36`；`docs/DECISIONS.md` 2026-11-08 段 |
+| 對 `art-of-war-ch1` 的 3 個 skill 做 fresh-context 盲測 | 2026-11-11 完整蒸餾的 PASS 由同一流程出題自評，只證明內部一致（`REVIEW.md`〈已驗證範圍〉） | 另開 Codex 對話，只給 skill 與新寫的 10 題（不給原 test-prompts），逐題判 PASS／FAIL，結果寫進 `REVIEW.md`；來源依 `REVIEW.md` 記載的行號與 SHA-256 重抽 | Codex | `REVIEW.md`〈已驗證範圍：真實來源完整蒸餾〉 |
 
 ## 中期：等條件成立再做
 

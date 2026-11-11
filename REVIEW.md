@@ -88,9 +88,19 @@ python tools/check_upstream_updates.py --strict
 - `pyproject.toml` 沒有 `[project]`／`[build-system]`。
 - `.gitattributes` 釘 `eol=lf`。
 
+## 已驗證範圍：真實來源完整蒸餾（2026-11-11）
+
+- 來源：Lionel Giles 1910 英譯《孫子兵法》第一章「Laying Plans」，取自 Project Gutenberg eBook #132 `pg132.txt` 第 1614–1836 行（公版），LF 正規化後 8688 位元組，SHA-256 `75513ca81a1743bb3f7320ce7da11adee44687e419c325a794abbc540e9f12f5`。
+- 執行：在暫存目錄跑 `codex exec -m gpt-5.6-sol -s workspace-write --skip-git-repo-check`，Codex 先讀本 repo 的 `SKILL.md` 與 `methodology/`；slug `art-of-war-ch1`，輸出 25 個檔案全部在暫存的 `books/`。跑完本 repo `git status --porcelain` 為空。來源與 `books/` 不提交。
+- 預篩：`partial_skill_pack`，19／25（證據與案例支撐 2／5）。
+- 三重驗證：4 項通過、3 項退回；通過的 4 項中，1 項併入來源路由，不另成 skill。
+- 產出 3 個 skill，各自 `execution_check` PASS、測試 10／10：`five-factor-comparison`、`adaptive-plan-revision`、`ethical-strategic-signaling`。
+- 獨立驗收：另一個 fresh context 抽查 5 段引文，去掉空白差異後與來源逐字相符。
+- **限制**：`PIPELINE_STATE.md` 標明 `review_mode: fallback_single_agent`、`pressure_test_mode: fallback_self_test`（SKILL.md 允許）。測試題由同一流程出題並自評，所以 PASS 只代表內部一致，不是盲測；skill 沒有安裝；來源只有一章，證據基礎薄。
+
 ## 尚未宣稱範圍
 
-- **沒有**用真實書籍、PDF、字幕或長影片跑完整蒸餾流水線，因此不宣稱預篩／驗證子集已在真實來源上壓過一輪。
+- **沒有**用整本書、PDF、字幕或長影片跑完整蒸餾流水線；也沒有對產出 skill 做 fresh-context 盲測。
 - **沒有**安裝或執行 DeepSeek Harness 外掛；安裝包仍從上游 Release 下載。
 - **沒有**把產品 `SKILL.md`／`methodology/`／`extractors/`／`templates/` 翻成繁體。
 - `dev_check.ps1` **不含** Bandit、CodeQL、真實蒸餾。
