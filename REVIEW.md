@@ -98,9 +98,14 @@ python tools/check_upstream_updates.py --strict
 - 獨立驗收：另一個 fresh context 抽查 5 段引文，去掉空白差異後與來源逐字相符。
 - **限制**：`PIPELINE_STATE.md` 標明 `review_mode: fallback_single_agent`、`pressure_test_mode: fallback_self_test`（SKILL.md 允許）。測試題由同一流程出題並自評，所以 PASS 只代表內部一致，不是盲測；skill 沒有安裝；來源只有一章，證據基礎薄。
 
+- **盲測（2026-11-11，同日）**：另開一個 Codex 對話，只給三份 `SKILL.md` 與來源，不給原測試題。每個 skill 新寫 7 題該觸發、3 題不該觸發，逐題照 skill 實際作答並評分。結果：`adaptive-plan-revision` 10／10、`ethical-strategic-signaling` 9／10、`five-factor-comparison` 9／10。
+  - 失敗的那題：例如 `ethical-strategic-signaling` 遇到「計畫不變、只問揭露時機」時，照入口順序轉介，而沒有直接作答。
+  - 發現的缺陷：入口語義與決策樹不一致、基線不完整時沒有停止規則、驗證標準沒寫來源新鮮度與衝突怎麼處理、「回滾」沒有區分不可逆的行動。
+  - 盲測仍是同一個評估者出題並評分（題目是新的、看不到原題）。產出的 skill 沒有收進本 repo，所以缺陷只記錄在這裡，作為方法論的參考。
+
 ## 尚未宣稱範圍
 
-- **沒有**用整本書、PDF、字幕或長影片跑完整蒸餾流水線；也沒有對產出 skill 做 fresh-context 盲測。
+- **沒有**用整本書、PDF、字幕或長影片跑完整蒸餾流水線；也沒有用另一個模型做獨立盲審。
 - **沒有**安裝或執行 DeepSeek Harness 外掛；安裝包仍從上游 Release 下載。
 - **沒有**把產品 `SKILL.md`／`methodology/`／`extractors/`／`templates/` 翻成繁體。
 - `dev_check.ps1` **不含** Bandit、CodeQL、真實蒸餾。

@@ -11,7 +11,6 @@
 
 | 項目 | 為什麼 | 驗收方式 | 建議執行者 | 證據 |
 | --- | --- | --- | --- | --- |
-| 對 `art-of-war-ch1` 的 3 個 skill 做 fresh-context 盲測 | 2026-11-11 完整蒸餾的 PASS 由同一流程出題自評，只證明內部一致（`REVIEW.md`〈已驗證範圍〉） | 另開 Codex 對話，只給 skill 與新寫的 10 題（不給原 test-prompts），逐題判 PASS／FAIL，結果寫進 `REVIEW.md`；來源依 `REVIEW.md` 記載的行號與 SHA-256 重抽 | Codex | `REVIEW.md`〈已驗證範圍：真實來源完整蒸餾〉 |
 
 ## 中期：等條件成立再做
 
