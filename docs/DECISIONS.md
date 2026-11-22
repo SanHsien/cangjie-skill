@@ -325,3 +325,15 @@ release branches 的 heads 未變。故 commit watermark 不變，PR watermark 4
 **2026-11-08 的嘗試**：已按上述方法執行 `codex exec -s workspace-write --skip-git-repo-check -C <暫存目錄>`，未開始蒸餾（`books/art-of-war-ch1` 不存在），輸出為 `ERROR: exceeded retry limit, last status: 429 Too Many Requests`，結束碼 1。回報：Codex 週額度要到 2026-11-11 16:27 才重置（未獨立驗證）。因此這一列留在路線圖近期、建議執行者 Codex，額度恢復後照同一方法再跑。
 
 **重審條件**：流程跑完後把結果寫回 `REVIEW.md`；若來源在預篩被判不適合（例如過短），換成同樣公版的其他短篇並記錄原因。
+
+## 2026-11-22：坑三的舊數量與階段 1.6 軟預算矛盾（採用 prompt audit 修正）
+
+**問題**：`SKILL.md` 坑三與 `methodology/00.5-pre-filter.md` 的「三坑」仍寫「full pack 目標大約 10–25 個/本」，
+但 2026-08-30 採用的階段 1.6 晉級門把可發現入口定為軟預算 8（含 1 個來源路由入口）。同一份 skill 給兩個互相衝突的數量，
+模型可能照舊數字把每個通過驗證的單元都做成獨立 skill。
+
+**實查**：`git show upstream/main:SKILL.md | grep -n "10–25"` 無輸出（上游已刪這句）；`00.5-pre-filter.md` 是本 fork 自有檔
+（上游 `main` 無此檔）。
+
+**決定**：兩處改成指向階段 1.6 的軟預算，並說明未晉級單元留在路由入口下。屬已記錄的 fork 產品修正（2026-08-30 採用晉級門時漏改的尾巴）。
+來源：2026-11-22 prompt audit 第 3 批（cangjie-skill，2 則 H）。**重審條件**：上游調整晉級門預算時一併重看。

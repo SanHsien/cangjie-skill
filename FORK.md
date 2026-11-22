@@ -38,6 +38,7 @@
 - 階段 0.5 預篩與三坑（對齊上游 PR #22 子集；複用檢查改寫、可跳過）
 - book-fit 五維／四類產物判斷併入預篩（對齊上游 PR #4 概念，不帶 evaluation 樣本）
 - 短內容 V1、`execution_check`、對抗出題、術語回填、可選 SCORECARD（對齊上游 PR #10 子集；剔除 session 檔與 `related_skills` frontmatter）
+- 坑三的 Skill 數量改指向階段 1.6 軟預算（2026-11-22；補 2026-08-30 採用晉級門時漏改的舊數字，見 `docs/DECISIONS.md`）
 
 ## 分支與 remote
 
